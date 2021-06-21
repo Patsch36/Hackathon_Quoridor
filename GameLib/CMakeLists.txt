@@ -9,3 +9,5 @@ add_library(GameLib
     Coordinate.h
     Coordinate.cpp
 )
+
+set_project_warnings(GameLib)

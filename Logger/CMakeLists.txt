@@ -9,3 +9,5 @@ add_library(LoggerLib
         LogLevel.cpp
         LogLevel.h
         Log.h)
+
+set_project_warnings(LoggerLib)

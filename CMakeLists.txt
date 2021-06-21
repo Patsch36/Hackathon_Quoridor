@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 project(Hackathon)
+include(cmake/CompilerWarnings.cmake)
 
 add_subdirectory(extern/googletest)
 
@@ -11,5 +12,6 @@ add_executable(
     Hackathon
     main.cpp
 )
+set_project_warnings(Hackathon)
 
 target_link_libraries(Hackathon GameLib GraphLib LoggerLib)

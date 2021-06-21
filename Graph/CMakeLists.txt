@@ -1,4 +1,3 @@
-
 add_library(GraphLib
         STATIC
         Edge.cpp
@@ -14,3 +13,4 @@ add_library(GraphLib
         Algorithm/BreadthFirstSearch.cpp
         Algorithm/BreadthFirstSearch.h
         VertexVector.h)
+set_project_warnings(GraphLib)
