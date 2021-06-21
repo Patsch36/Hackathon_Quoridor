@@ -38,6 +38,7 @@ GameField::GameField()
 
 GameField::~GameField() = default;
 
+
 std::string GameField::toString() const
 {
     std::string result;
@@ -56,6 +57,15 @@ std::string GameField::toString() const
     }
     return result;
 }
+
+// Operator has to be declared outside the class
+std::ostream &operator<<(std::ostream &os, const GameField &gf)
+{
+    std::string result = gf.toString();
+    os << result;
+    return os;
+}
+
 
 void GameField::printDelimiter(std::string &result, Coordinate const &coordinate) const
 {

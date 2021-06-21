@@ -8,6 +8,7 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <iostream>
 
 
 class GameField
@@ -16,6 +17,8 @@ public:
     GameField();
     virtual ~GameField();
     std::string toString() const;
+
+    friend std::ostream &operator<<(std::ostream &os, const GameField &gf);
 
     const Position &getPosition(Coordinate const &coordinates) const;
 
