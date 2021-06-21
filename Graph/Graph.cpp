@@ -3,11 +3,12 @@
 //
 
 #include "Graph.h"
-#include "Vertex.h"
 #include "Edge.h"
-#include <ostream>
-#include <cassert>
+#include "Vertex.h"
 #include <algorithm>
+#include <cassert>
+#include <ostream>
+
 
 namespace Combinatorics
 {
@@ -17,11 +18,11 @@ namespace Combinatorics
     VertexId Graph::INVALID_VERTEX_ID = std::numeric_limits<VertexId>::max();
     EdgeId Graph::INVALID_EDGE_ID = std::numeric_limits<EdgeId>::max();
 
+    Graph::Graph() : _vertices(), _edges()
+    {
+    }
 
-    Graph::Graph():_vertices(),_edges()
-    {}
-
-    Graph::Graph(VertexId n):_vertices(),_edges()
+    Graph::Graph(VertexId n) : _vertices(), _edges()
     {
         addVertices(n);
     }
@@ -58,10 +59,10 @@ namespace Combinatorics
         return _edges.size();
     }
 
-    Vertex & Graph::addVertex()
+    Vertex &Graph::addVertex()
     {
-        LOG().debug("Graph: Create new vertex with id",numVertices());
-        _vertices.emplace_back(std::make_unique<Vertex>(numVertices(),*this));
+        LOG().debug("Graph: Create new vertex with id", numVertices());
+        _vertices.emplace_back(std::make_unique<Vertex>(numVertices(), *this));
         return *_vertices.back();
     }
 
@@ -73,22 +74,23 @@ namespace Combinatorics
         }
     }
 
-    Edge const & Graph::addEdge(Vertex &ep1, Vertex &ep2)
+    Edge const &Graph::addEdge(Vertex &ep1, Vertex &ep2)
     {
-        LOG().debug("Graph: Create new edge between vertices",ep1,"and",ep2);
-        _edges.emplace_back(std::make_unique<Edge>(numEdges(),ep1.getId(),ep2.getId(),*this));
-        Edge & newEdge = *_edges.back();
+        LOG().debug("Graph: Create new edge between vertices", ep1, "and", ep2);
+        _edges.emplace_back(std::make_unique<Edge>(numEdges(), ep1.getId(), ep2.getId(), *this));
+        Edge &newEdge = *_edges.back();
         ep1.addEdge(newEdge);
         ep2.addEdge(newEdge);
-        return newEdge;;
+        return newEdge;
+        ;
     }
 
-    Edge const & Graph::addEdge(VertexId ep1, VertexId ep2)
+    Edge const &Graph::addEdge(VertexId ep1, VertexId ep2)
     {
-        return addEdge(getVertex(ep1),getVertex(ep2));
+        return addEdge(getVertex(ep1), getVertex(ep2));
     }
 
-    Graph::VertexConstIterator Graph::vertexBegin()  const
+    Graph::VertexConstIterator Graph::vertexBegin() const
     {
         return VertexConstIterator(_vertices.begin());
     }
@@ -130,28 +132,28 @@ namespace Combinatorics
 
     Graph::EdgeRange Graph::edgeRange()
     {
-        return EdgeRange(edgeBegin(),edgeEnd());
+        return EdgeRange(edgeBegin(), edgeEnd());
     }
     Graph::EdgeConstRange Graph::edgeRange() const
     {
-        return EdgeConstRange(edgeBegin(),edgeEnd());
+        return EdgeConstRange(edgeBegin(), edgeEnd());
     }
 
     Graph::VertexRange Graph::vertexRange()
     {
-        return VertexRange(vertexBegin(),vertexEnd());
+        return VertexRange(vertexBegin(), vertexEnd());
     }
 
     Graph::VertexConstRange Graph::vertexRange() const
     {
-        return VertexConstRange(vertexBegin(),vertexEnd());
+        return VertexConstRange(vertexBegin(), vertexEnd());
     }
 
     void Graph::printHumanReadable() const
     {
-        LOG().info("Graph contains",numVertices(),"vertices and",numEdges(),"edges");
+        LOG().info("Graph contains", numVertices(), "vertices and", numEdges(), "edges");
         LOG().info("Edges:");
-        for (auto & edge : edgeRange())
+        for (auto &edge : edgeRange())
         {
             LOG().info(edge);
         }
@@ -159,12 +161,12 @@ namespace Combinatorics
 
     bool Graph::hasEdge(VertexId v, VertexId w) const
     {
-        return findEdge(v,w) != INVALID_EDGE_ID;
+        return findEdge(v, w) != INVALID_EDGE_ID;
     }
 
-    bool Graph::hasEdge(Vertex const & v, Vertex const & w) const
+    bool Graph::hasEdge(Vertex const &v, Vertex const &w) const
     {
-        return hasEdge(v.getId(),w.getId());
+        return hasEdge(v.getId(), w.getId());
     }
 
     void Graph::removeEdge(VertexId v, VertexId w)
@@ -172,7 +174,7 @@ namespace Combinatorics
         EdgeId const toRemove = getVertex(v).findEdgeTo(w);
         if (toRemove == INVALID_EDGE_ID)
         {
-            LOG().warning("Attempt to delete non-existing edge between",v,"and",w);
+            LOG().warning("Attempt to delete non-existing edge between", v, "and", w);
         }
         else
         {
@@ -191,23 +193,17 @@ namespace Combinatorics
 
         // Now we have to shift all other edge indices down by 1. Fortunately it already refers to the element following the
         // last element
-        std::for_each(
-                it,
-                _edges.end(),
-                [](std::unique_ptr<Edge> & edge_ptr)
-                {
-                    -- edge_ptr->_id;
-                });
+        std::for_each(it, _edges.end(), [](std::unique_ptr<Edge> &edge_ptr) { --edge_ptr->_id; });
 
         // Finally we have to correct the corresponding vertex edge ids
-        for ( Vertex & v : vertexRange())
+        for (Vertex &v : vertexRange())
         {
-            for (EdgeId & edge_id : v._edges)
+            for (EdgeId &edge_id : v._edges)
             {
                 // All edge ids bigger or equal to the removed one, namely e, must be decreased
                 if (edge_id >= e)
                 {
-                    -- edge_id;
+                    --edge_id;
                 }
             }
         }
@@ -215,13 +211,13 @@ namespace Combinatorics
 
     EdgeId Graph::findEdge(VertexId v, VertexId w) const
     {
-        Vertex const & vertex = getVertex(v);
+        Vertex const &vertex = getVertex(v);
         return vertex.findEdgeTo(w);
     }
 
-    EdgeId Graph::findEdge(Vertex const & v, Vertex const & w) const
+    EdgeId Graph::findEdge(Vertex const &v, Vertex const &w) const
     {
-       return findEdge(v.getId(),w.getId());
+        return findEdge(v.getId(), w.getId());
     }
 
-}
+} // namespace Combinatorics

@@ -10,26 +10,27 @@ bool Coordinate::operator==(const Coordinate &other) const
 }
 
 Coordinate::Coordinate(int x, int y) : m_x(x), m_y(y)
-{}
+{
+}
 
 Coordinate Coordinate::getLeftCoordinate() const
 {
-    return Coordinate(x()-1, y());
+    return Coordinate(x() - 1, y());
 }
 
 Coordinate Coordinate::getAboveCoordinate() const
 {
-    return Coordinate(x(), y()+1);
+    return Coordinate(x(), y() + 1);
 }
 
 Coordinate Coordinate::getRightCoordinate() const
 {
-    return Coordinate(x()+1, y());
+    return Coordinate(x() + 1, y());
 }
 
 Coordinate Coordinate::getBelowCoordinate() const
 {
-    return Coordinate(x(), y()-1);
+    return Coordinate(x(), y() - 1);
 }
 
 int Coordinate::x() const
@@ -42,8 +43,8 @@ int Coordinate::y() const
     return m_y;
 }
 
-std::ostream & operator<<(std::ostream & out, Coordinate const & coord)
+std::ostream &operator<<(std::ostream &out, Coordinate const &coord)
 {
-    out << "("<< coord.x() << ","<< coord.y() <<")";
+    out << "(" << coord.x() << "," << coord.y() << ")";
     return out;
 }

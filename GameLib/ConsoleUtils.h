@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <climits> // needed for INT_MAX (only for certain compiler maybe).
+#include <string>
 
 namespace ConsoleUtils
 {
@@ -10,7 +10,6 @@ namespace ConsoleUtils
     double readDouble();
     std::string readString();
     std::string readString(const std::string &message, int maxLength = INT_MAX);
-    int safelyReadInteger(const std::string & message);
-    int safelyReadInteger(const std::string & message, int min, int max);
-}
-
+    int safelyReadInteger(const std::string &message);
+    int safelyReadInteger(const std::string &message, int min, int max);
+} // namespace ConsoleUtils

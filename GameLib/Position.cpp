@@ -2,19 +2,21 @@
 
 #include "../Graph/Graph.h"
 
-Position::Position(Coordinate const & coordinate, Combinatorics::Vertex & vertex)
-    : Position(coordinate.x(),coordinate.y(),vertex)
-{}
+Position::Position(Coordinate const &coordinate, Combinatorics::Vertex &vertex)
+    : Position(coordinate.x(), coordinate.y(), vertex)
+{
+}
 
-Position::Position(int x, int y, Combinatorics::Vertex &vertex):Coordinate(x,y), m_vertex(vertex)
-{}
+Position::Position(int x, int y, Combinatorics::Vertex &vertex) : Coordinate(x, y), m_vertex(vertex)
+{
+}
 
-Combinatorics::Vertex const & Position::getVertex() const
+Combinatorics::Vertex const &Position::getVertex() const
 {
     return m_vertex;
 }
 
-Combinatorics::Vertex  & Position::getVertex()
+Combinatorics::Vertex &Position::getVertex()
 {
     return m_vertex;
 }
@@ -30,7 +32,7 @@ bool Position::operator==(const Position &other) const
     return Coordinate::operator==(other) && m_vertex.getId() == other.m_vertex.getId();
 }
 
-bool Position::operator==(const Coordinate &other)  const
+bool Position::operator==(const Coordinate &other) const
 {
     return false;
 }

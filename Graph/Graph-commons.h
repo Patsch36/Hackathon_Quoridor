@@ -19,6 +19,6 @@ namespace Combinatorics
     using EdgeId = size_t;
     using VertexId = size_t;
 
-}
+} // namespace Combinatorics
 
-#endif //HACKATHON_GRAPH_COMMONS_H
+#endif // HACKATHON_GRAPH_COMMONS_H

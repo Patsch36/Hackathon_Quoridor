@@ -2,17 +2,19 @@
 // Created by danie on 02.06.2020.
 //
 
+#include "Vertex.h"
+#include "Edge.h"
+#include "Graph.h"
 #include <algorithm>
 #include <cassert>
 #include <ostream>
-#include "Graph.h"
-#include "Vertex.h"
-#include "Edge.h"
+
 
 namespace Combinatorics
 {
-    Vertex::Vertex(VertexId id_, Graph const &graph_):_id(id_),_graph(graph_),_edges()
-    {}
+    Vertex::Vertex(VertexId id_, Graph const &graph_) : _id(id_), _graph(graph_), _edges()
+    {
+    }
 
     EdgeId Vertex::numEdges() const
     {
@@ -35,26 +37,22 @@ namespace Combinatorics
         return findEdgeTo(other) != Graph::INVALID_EDGE_ID;
     }
 
-    bool Vertex::hasEdgeTo(Vertex const & other) const
+    bool Vertex::hasEdgeTo(Vertex const &other) const
     {
         return findEdgeTo(other) != Graph::INVALID_EDGE_ID;
     }
 
-
-
     void Vertex::removeEdge(EdgeId edge)
     {
-        auto toDelete = std::find_if(
-                _edges.cbegin(), _edges.cend(), [edge](EdgeId current) {
-                    return current == edge;
-                });
+        auto toDelete = std::find_if(_edges.cbegin(), _edges.cend(), [edge](EdgeId current) { return current == edge; });
 
-        if (toDelete != _edges.end()) {
+        if (toDelete != _edges.end())
+        {
             _edges.erase(toDelete);
         }
     }
 
-    void Vertex::addEdge(Edge const & edge)
+    void Vertex::addEdge(Edge const &edge)
     {
         _edges.emplace_back(edge.getId());
     }
@@ -62,17 +60,13 @@ namespace Combinatorics
     EdgeId Vertex::findEdgeTo(VertexId other) const
     {
         VertexId const my_id = getId();
-        Graph const & g = _graph;
-        auto res_it = std::find_if(
-                _edges.cbegin(),
-                _edges.cend(),
-                [my_id, other, &g](EdgeId const & id) {
-                    return g.getEdge(id).connects(my_id,other);
-                });
-        return res_it ==_edges.end()? Graph::INVALID_EDGE_ID : *res_it;
+        Graph const &g = _graph;
+        auto res_it = std::find_if(_edges.cbegin(), _edges.cend(),
+                                   [my_id, other, &g](EdgeId const &id) { return g.getEdge(id).connects(my_id, other); });
+        return res_it == _edges.end() ? Graph::INVALID_EDGE_ID : *res_it;
     }
 
-    EdgeId Vertex::findEdgeTo(Vertex const & other) const
+    EdgeId Vertex::findEdgeTo(Vertex const &other) const
     {
         return findEdgeTo(other.getId());
     }
@@ -82,9 +76,9 @@ namespace Combinatorics
         return _edges.size();
     }
 
-    std::ostream & operator<<(std::ostream & out, Vertex const & v)
+    std::ostream &operator<<(std::ostream &out, Vertex const &v)
     {
         out << "(" << v.getId() << ")";
         return out;
     }
-}
+} // namespace Combinatorics

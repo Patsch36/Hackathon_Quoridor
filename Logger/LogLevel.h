@@ -16,20 +16,17 @@ enum class LogLevel : short
     DEBUG
 };
 // Kind of const-time lookup table for log level names
-static std::array<std::string, 4> logLevelStrings({"ERROR","WARNING","INFO","DEBUG"});
+static std::array<std::string, 4> logLevelStrings({"ERROR", "WARNING", "INFO", "DEBUG"});
 // Utility methods
-template <LogLevel l>
-std::string const & toString();
-std::string const & toString(LogLevel l);
+template <LogLevel l> std::string const &toString();
+std::string const &toString(LogLevel l);
 
 ////////////////////////////
 /// Implementation
 
-template <LogLevel l>
-std::string const & toString()
+template <LogLevel l> std::string const &toString()
 {
     return std::get<static_cast<size_t>(l)>(logLevelStrings);
 }
 
-
-#endif //GAMEFIELDGRAPH_LOGLEVEL_H
+#endif // GAMEFIELDGRAPH_LOGLEVEL_H

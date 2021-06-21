@@ -15,5 +15,4 @@ public:
     void write(std::string const &msg) const override;
 };
 
-
-#endif //GAMEFIELDGRAPH_COUTLOGPOLICY_H
+#endif // GAMEFIELDGRAPH_COUTLOGPOLICY_H

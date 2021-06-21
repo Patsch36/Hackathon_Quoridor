@@ -3,54 +3,46 @@
 //
 
 #include "BreadthFirstSearch.h"
-#include <queue>
 #include <cassert>
+#include <queue>
+
 
 namespace Combinatorics
 {
-    BreadthFirstSearch:: BreadthFirstSearch(const Graph &g_, VertexId start_id)
-    :
-        _g(g_),
-        _predecessor(g_,Graph::INVALID_VERTEX_ID),
-        _dist(g_,Graph::INVALID_VERTEX_ID)
+    BreadthFirstSearch::BreadthFirstSearch(const Graph &g_, VertexId start_id)
+        : _g(g_), _predecessor(g_, Graph::INVALID_VERTEX_ID), _dist(g_, Graph::INVALID_VERTEX_ID)
     {
-        run(start_id,[](EdgeId e){return true;});
+        run(start_id, [](EdgeId e) { return true; });
     }
 
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g_, std::set<EdgeId> const &forbidden_edge, VertexId start_id)
-    :
-            _g(g_),
-            _predecessor(g_,Graph::INVALID_VERTEX_ID),
-            _dist(g_,Graph::INVALID_VERTEX_ID)
+        : _g(g_), _predecessor(g_, Graph::INVALID_VERTEX_ID), _dist(g_, Graph::INVALID_VERTEX_ID)
     {
-        run(start_id,[&forbidden_edge](EdgeId e){return forbidden_edge.find(e) == forbidden_edge.end();});
+        run(start_id, [&forbidden_edge](EdgeId e) { return forbidden_edge.find(e) == forbidden_edge.end(); });
     }
 
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g_, VertexVector<bool> const &allowed_edges, VertexId start_id)
-            :
-            _g(g_),
-            _predecessor(g_,Graph::INVALID_VERTEX_ID),
-            _dist(g_,Graph::INVALID_VERTEX_ID)
+        : _g(g_), _predecessor(g_, Graph::INVALID_VERTEX_ID), _dist(g_, Graph::INVALID_VERTEX_ID)
     {
-        run(start_id,[&allowed_edges](EdgeId e){return allowed_edges[e];});
+        run(start_id, [&allowed_edges](EdgeId e) { return allowed_edges[e]; });
     }
 
-    BreadthFirstSearch::BreadthFirstSearch(const Graph &g, Vertex const & start_vertex)
-    :
-        BreadthFirstSearch(g,start_vertex.getId())
-    {}
+    BreadthFirstSearch::BreadthFirstSearch(const Graph &g, Vertex const &start_vertex)
+        : BreadthFirstSearch(g, start_vertex.getId())
+    {
+    }
 
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g, std::set<EdgeId> const &forbidden_edge,
                                            Vertex const &start_vertex)
-            :
-            BreadthFirstSearch(g,forbidden_edge,start_vertex.getId())
-    {}
+        : BreadthFirstSearch(g, forbidden_edge, start_vertex.getId())
+    {
+    }
 
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g, VertexVector<bool> const &allowed_edges,
                                            Vertex const &start_vertex)
-            :
-            BreadthFirstSearch(g,allowed_edges,start_vertex.getId())
-    {}
+        : BreadthFirstSearch(g, allowed_edges, start_vertex.getId())
+    {
+    }
 
     const Graph &BreadthFirstSearch::getG() const
     {
@@ -77,14 +69,14 @@ namespace Combinatorics
         return _dist[t] != Graph::INVALID_VERTEX_ID;
     }
 
-    bool BreadthFirstSearch::is_reachable(Vertex const & t) const
+    bool BreadthFirstSearch::is_reachable(Vertex const &t) const
     {
         return is_reachable(t.getId());
     }
 
     std::list<VertexId> BreadthFirstSearch::getPath(VertexId t) const
     {
-        if (! is_reachable(t))
+        if (!is_reachable(t))
         {
             throw std::runtime_error("BFS: Invalid getPath command to non-reachable t");
         }
@@ -111,7 +103,7 @@ namespace Combinatorics
         return _predecessor[t];
     }
 
-    VertexId BreadthFirstSearch::getPredecessor(Vertex const & t) const
+    VertexId BreadthFirstSearch::getPredecessor(Vertex const &t) const
     {
         return getPredecessor(t.getId());
     }
@@ -122,10 +114,8 @@ namespace Combinatorics
         return _dist[t];
     }
 
-    VertexId BreadthFirstSearch::getDist(Vertex const & t) const
+    VertexId BreadthFirstSearch::getDist(Vertex const &t) const
     {
         return getDist(t.getId());
     }
-}
-
-
+} // namespace Combinatorics

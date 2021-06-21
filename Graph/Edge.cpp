@@ -2,11 +2,12 @@
 // Created by danie on 02.06.2020.
 //
 
-#include <cassert>
-#include <ostream>
+#include "Edge.h"
 #include "Graph.h"
 #include "Vertex.h"
-#include "Edge.h"
+#include <cassert>
+#include <ostream>
+
 
 namespace Combinatorics
 {
@@ -20,9 +21,9 @@ namespace Combinatorics
         return (_ep1 == v || _ep2 == v);
     }
 
-    bool Edge::connects(Vertex const & v, Vertex const & w) const
+    bool Edge::connects(Vertex const &v, Vertex const &w) const
     {
-        return connects(v.getId(),w.getId());
+        return connects(v.getId(), w.getId());
     }
 
     bool Edge::connects(VertexId v, VertexId w) const
@@ -54,21 +55,18 @@ namespace Combinatorics
     }
 
     Edge::Edge(EdgeId id_, VertexId ep1_, VertexId ep2_, Graph const &graph_)
-            :
-            _id(id_),
-            _ep1(ep1_),
-            _ep2(ep2_),
-            _graph(graph_)
-    {}
+        : _id(id_), _ep1(ep1_), _ep2(ep2_), _graph(graph_)
+    {
+    }
 
     EdgeId Edge::getId() const
     {
         return _id;
     }
 
-    std::ostream & operator<<(std::ostream & out, Edge const & e)
+    std::ostream &operator<<(std::ostream &out, Edge const &e)
     {
         out << "Edge " << e.getId() << ": " << e.getEndpoint1() << " -- " << e.getEndpoint2();
         return out;
     }
-}
+} // namespace Combinatorics

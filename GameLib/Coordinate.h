@@ -7,7 +7,8 @@
 
 #include <ostream>
 
-class Coordinate {
+class Coordinate
+{
 public:
     Coordinate(int x, int y);
 
@@ -18,13 +19,13 @@ public:
     Coordinate getRightCoordinate() const;
     Coordinate getAboveCoordinate() const;
     Coordinate getBelowCoordinate() const;
-    virtual bool operator==(const Coordinate & other) const;
+    virtual bool operator==(const Coordinate &other) const;
+
 private:
     int m_x;
     int m_y;
 };
 
-std::ostream & operator<<(std::ostream & out, Coordinate const & coord);
+std::ostream &operator<<(std::ostream &out, Coordinate const &coord);
 
-
-#endif //HACKATHON_COORDINATE_H
+#endif // HACKATHON_COORDINATE_H

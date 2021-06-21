@@ -16,25 +16,25 @@ namespace Combinatorics
     class Edge
     {
         friend class Combinatorics::Graph;
+
     public:
-
         // C'tor
-        explicit Edge(EdgeId id_, VertexId ep1_, VertexId ep2_, Graph const & graph_);
+        explicit Edge(EdgeId id_, VertexId ep1_, VertexId ep2_, Graph const &graph_);
 
-        Vertex const & getEndpoint1() const;
-        Vertex const & getEndpoint2() const;
+        Vertex const &getEndpoint1() const;
+        Vertex const &getEndpoint2() const;
 
         // returns the endpoint which is not v
-        Vertex const & getOtherEndpoint(Vertex const & v) const;
+        Vertex const &getOtherEndpoint(Vertex const &v) const;
 
         // checks whether this edge is adjazant with v
-        bool isAdjiazent(Vertex const & v) const;
+        bool isAdjiazent(Vertex const &v) const;
 
         // checks whether this edge is adjazant with v
         bool isAdjiazent(VertexId v) const;
 
         // Checks whether this edge connects v and w
-        bool connects(Vertex const & v, Vertex const & w) const;
+        bool connects(Vertex const &v, Vertex const &w) const;
 
         // Checks whether this edge connects v and w
         bool connects(VertexId v, VertexId w) const;
@@ -46,9 +46,9 @@ namespace Combinatorics
         EdgeId _id;
         VertexId const _ep1;
         VertexId const _ep2;
-        Graph const &  _graph;
+        Graph const &_graph;
     };
     // overload print
-    std::ostream & operator<<(std::ostream & out, Edge const & e);
-}
-#endif //HACKATHON_EDGE_H
+    std::ostream &operator<<(std::ostream &out, Edge const &e);
+} // namespace Combinatorics
+#endif // HACKATHON_EDGE_H

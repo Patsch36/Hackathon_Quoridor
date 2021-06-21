@@ -1,13 +1,12 @@
 #include "ConsoleUtils.h"
 
-#include <ioStream>
 #include <ctime>
+#include <ioStream>
 
 using std::cin;
-using std::string;
 using std::cout;
 using std::endl;
-
+using std::string;
 
 int ConsoleUtils::readInteger()
 {
@@ -42,36 +41,39 @@ std::string ConsoleUtils::readString()
     return line;
 }
 
-std::string ConsoleUtils::readString(const std::string & message, int maxLength)
+std::string ConsoleUtils::readString(const std::string &message, int maxLength)
 {
     string line = "";
-    while (line == "" || line.length() > maxLength) {
+    while (line == "" || line.length() > maxLength)
+    {
         cout << message << endl;
         cin >> line;
     }
     return line;
 }
 
-int ConsoleUtils::safelyReadInteger(const string & message, int min, int max)
+int ConsoleUtils::safelyReadInteger(const string &message, int min, int max)
 {
     int result = min - 1;
-    while (result == min -1) {
-		cout << message << endl;
+    while (result == min - 1)
+    {
+        cout << message << endl;
         result = readInteger();
-		if (result < min || result > max) {
-			cout << "Bitte einen Wert zwischen " << min << " und " << max << " eingeben!" << endl;
-			result = min - 1;
-		}
+        if (result < min || result > max)
+        {
+            cout << "Bitte einen Wert zwischen " << min << " und " << max << " eingeben!" << endl;
+            result = min - 1;
+        }
     }
     return result;
 }
 
-int ConsoleUtils::safelyReadInteger(const string & message)
+int ConsoleUtils::safelyReadInteger(const string &message)
 {
     int result = -1;
     while (result == -1)
     {
-		cout << message << endl;
+        cout << message << endl;
         result = readInteger();
     }
     return result;

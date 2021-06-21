@@ -2,8 +2,9 @@
 // Created by danie on 03.07.2020.
 //
 
-#include <iostream>
 #include "CoutLogPolicy.h"
+#include <iostream>
+
 
 void CoutLogPolicy::open_ostream() const
 {
