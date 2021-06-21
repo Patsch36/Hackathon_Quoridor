@@ -2,4 +2,5 @@ Checks: '*,
          -llvmlibc-restrict-system-libc-headers,
          -llvmlibc-callee-namespace,
          -modernize-use-trailing-return-type,
-         -altera-struct-pack-align'
+         -altera-struct-pack-align,
+         -fuchsia-*'
