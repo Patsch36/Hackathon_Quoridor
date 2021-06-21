@@ -1,3 +1,5 @@
+zum clonen: `git clone --recurse-submodules git@github.com:Patsch36/Hackathon_Quoridor.git`
+
 # Hackathon_Quoridor
 
 - git submodule update --init --recursive
