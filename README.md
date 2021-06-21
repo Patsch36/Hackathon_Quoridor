@@ -3,6 +3,10 @@ zum clonen: `git clone --recurse-submodules git@github.com:Patsch36/Hackathon_Qu
 # Hackathon_Quoridor
 
 - git submodule update --init --recursive
+
+## Changes
+Alle wichtigen Änderungen in den bereits gegebenen Dateien können im [Wiki](https://github.com/Patsch36/Hackathon_Quoridor/wiki/Change-History) nachgelesen werden.
+
 ## Info für die Studenten:
 ihr dürft alles benutzen, was ihr bekommt. Ihr dürft auch alles ändern, was ihr bekommt, das Spielfeld, den Graphen usw. Es sind alles Vorschläge bzw. der Weg wie wir es implementiert haben, aber nicht der einzige und vielleicht auch nicht der beste Weg. Die Klassen in der GameLib sind unvollständig und sollten ergänzt werden, die Klassen in der Graph und LoggerLibrary sind so vollständig, wie wir sie für unsere Implementierung am Ende hatten. Dass die vorhandene Funktionalität uns gereicht hat, heißt natürlich nicht, dass sie euch auch zwingend reicht und auch nicht, dass ihr alles davon benötigt. Nutzt einfach das, was ihr braucht und fügt das hinzu, was euch fehlt. 
 
