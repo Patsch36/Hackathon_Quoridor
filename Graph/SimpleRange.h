@@ -18,6 +18,6 @@ namespace Combinatorics
         iterator_type _begin;
         iterator_type _end;
     };
-}
+} // namespace Combinatorics
 
 #endif //HACKATHON_SIMPLERANGE_H

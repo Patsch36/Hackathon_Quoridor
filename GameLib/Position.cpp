@@ -32,7 +32,7 @@ bool Position::operator==(const Position &other) const
     return Coordinate::operator==(other) && m_vertex.getId() == other.m_vertex.getId();
 }
 
-bool Position::operator==(const Coordinate &other) const
+bool Position::operator==(const Coordinate & /*other*/) const
 {
     return false;
 }

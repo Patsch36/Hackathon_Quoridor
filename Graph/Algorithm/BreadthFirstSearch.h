@@ -13,13 +13,12 @@
 #include <queue>
 #include <set>
 
-
 namespace Combinatorics
 {
     class BreadthFirstSearch
     {
     public:
-        BreadthFirstSearch(const Graph &g, VertexId start_id = VertexId(0));
+        explicit BreadthFirstSearch(const Graph &g, VertexId start_id = VertexId(0));
         BreadthFirstSearch(const Graph &g, Vertex const &start_vertex);
 
         // BFS with some forbidden edges
@@ -86,7 +85,7 @@ namespace Combinatorics
         {
             Vertex const &current = _g.getVertex(q.front());
             q.pop();
-            for (EdgeId neighbour_edge_id = EdgeId(0); neighbour_edge_id < current.numEdges(); ++neighbour_edge_id)
+            for (auto neighbour_edge_id = EdgeId(0); neighbour_edge_id < current.numEdges(); ++neighbour_edge_id)
             {
                 Edge const &edge = current.getEdge(neighbour_edge_id);
                 if (edge_is_allowed(edge.getId()))

@@ -15,22 +15,22 @@ Coordinate::Coordinate(int x, int y) : m_x(x), m_y(y)
 
 Coordinate Coordinate::getLeftCoordinate() const
 {
-    return Coordinate(x() - 1, y());
+    return {x() - 1, y()};
 }
 
 Coordinate Coordinate::getAboveCoordinate() const
 {
-    return Coordinate(x(), y() + 1);
+    return {x(), y() + 1};
 }
 
 Coordinate Coordinate::getRightCoordinate() const
 {
-    return Coordinate(x() + 1, y());
+    return {x() + 1, y()};
 }
 
 Coordinate Coordinate::getBelowCoordinate() const
 {
-    return Coordinate(x(), y() - 1);
+    return {x(), y() - 1};
 }
 
 int Coordinate::x() const

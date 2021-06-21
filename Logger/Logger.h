@@ -22,7 +22,7 @@ namespace DHBW_LOG
                       "LogPolicy must implement LogPolicyInterface");
 
     public:
-        template <typename... LogPolicyParams> Logger(LogPolicyParams... params);
+        template <typename... LogPolicyParams> explicit Logger(LogPolicyParams... params);
 
         virtual ~Logger();
 

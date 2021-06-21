@@ -5,10 +5,8 @@
 #include <list>
 #include <set>
 
-
 using Combinatorics::Edge;
 using Combinatorics::Graph;
-using Combinatorics::Vertex;
 
 static std::string const delimiter_x_open = " ";
 static std::string const delimiter_x_closed = "|";
@@ -38,9 +36,7 @@ GameField::GameField()
     }
 }
 
-GameField::~GameField()
-{
-}
+GameField::~GameField() = default;
 
 std::string GameField::toString() const
 {

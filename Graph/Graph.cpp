@@ -153,7 +153,7 @@ namespace Combinatorics
     {
         LOG().info("Graph contains", numVertices(), "vertices and", numEdges(), "edges");
         LOG().info("Edges:");
-        for (auto &edge : edgeRange())
+        for (const auto &edge : edgeRange())
         {
             LOG().info(edge);
         }

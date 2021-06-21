@@ -1,7 +1,7 @@
 #include "ConsoleUtils.h"
 
 #include <ctime>
-#include <ioStream>
+#include <iostream>
 
 using std::cin;
 using std::cout;
@@ -36,15 +36,15 @@ double ConsoleUtils::readDouble()
 
 std::string ConsoleUtils::readString()
 {
-    string line = "";
+    string line;
     cin >> line;
     return line;
 }
 
 std::string ConsoleUtils::readString(const std::string &message, int maxLength)
 {
-    string line = "";
-    while (line == "" || line.length() > maxLength)
+    string line;
+    while (line.empty() || line.length() > maxLength)
     {
         cout << message << endl;
         cin >> line;

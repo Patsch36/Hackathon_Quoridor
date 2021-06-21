@@ -12,7 +12,7 @@ namespace Combinatorics
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g_, VertexId start_id)
         : _g(g_), _predecessor(g_, Graph::INVALID_VERTEX_ID), _dist(g_, Graph::INVALID_VERTEX_ID)
     {
-        run(start_id, [](EdgeId e) { return true; });
+        run(start_id, [](EdgeId  /*e*/) { return true; });
     }
 
     BreadthFirstSearch::BreadthFirstSearch(const Graph &g_, std::set<EdgeId> const &forbidden_edge, VertexId start_id)
