@@ -2,11 +2,11 @@
 // Created by danie on 02.06.2020.
 //
 
-#include "Edge.h"
 #include "Graph.h"
 #include "Vertex.h"
 #include <cassert>
 #include <ostream>
+#include "Edge.h"
 
 
 namespace Combinatorics

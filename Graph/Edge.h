@@ -6,6 +6,7 @@
 #define HACKATHON_EDGE_H
 
 #include "Graph-commons.h"
+#include <ostream>
 
 namespace Combinatorics
 {
