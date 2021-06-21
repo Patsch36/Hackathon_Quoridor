@@ -109,3 +109,8 @@ dkms.conf
 .bash*
 out/
 .vs/
+
+# vscode
+build
+.cache
+.vscode
