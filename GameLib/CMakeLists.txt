@@ -1,0 +1,11 @@
+add_library(GameLib
+    STATIC
+    ConsoleUtils.h
+    ConsoleUtils.cpp
+    GameField.h
+    GameField.cpp
+    Position.h
+    Position.cpp
+    Coordinate.h
+    Coordinate.cpp
+)

@@ -3,45 +3,9 @@ project(Hackathon)
 
 add_subdirectory(extern/googletest)
 
-add_library(GraphLib
-    STATIC
-    Graph/Edge.cpp
-    Graph/Edge.h
-    Graph/Vertex.cpp
-    Graph/Vertex.h
-    Graph/Graph.cpp
-    Graph/Graph.h
-    Graph/Graph-commons.h
-    Graph/PointerIteratorWrapper.h
-    Graph/SimpleRange.h
-    Graph/GraphMaps.h
-    Graph/Algorithm/BreadthFirstSearch.cpp
-    Graph/Algorithm/BreadthFirstSearch.h
-    Graph/VertexVector.h)
-
-add_library(LoggerLib
-        STATIC
-        Logger/Logger.h
-        Logger/LogPolicyInterface.h
-        Logger/FileLogPolicy.cpp
-        Logger/FileLogPolicy.h
-        Logger/CoutLogPolicy.cpp
-        Logger/CoutLogPolicy.h
-        Logger/LogLevel.cpp
-        Logger/LogLevel.h
-        Logger/Log.h)
-
-add_library(GameLib
-    STATIC
-    GameLib/ConsoleUtils.h
-    GameLib/ConsoleUtils.cpp
-    GameLib/GameField.h
-    GameLib/GameField.cpp
-    GameLib/Position.h
-    GameLib/Position.cpp
-    GameLib/Coordinate.h
-    GameLib/Coordinate.cpp
-)
+add_subdirectory(Graph)
+add_subdirectory(Logger)
+add_subdirectory(GameLib)
 
 add_executable(
     Hackathon

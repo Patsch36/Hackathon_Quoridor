@@ -1,0 +1,16 @@
+
+add_library(GraphLib
+        STATIC
+        Edge.cpp
+        Edge.h
+        Vertex.cpp
+        Vertex.h
+        Graph.cpp
+        Graph.h
+        Graph-commons.h
+        PointerIteratorWrapper.h
+        SimpleRange.h
+        GraphMaps.h
+        Algorithm/BreadthFirstSearch.cpp
+        Algorithm/BreadthFirstSearch.h
+        VertexVector.h)
