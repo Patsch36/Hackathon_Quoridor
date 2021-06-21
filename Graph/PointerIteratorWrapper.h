@@ -42,22 +42,22 @@ namespace Combinatorics
         /*
          * Define a const or a non-const operator depending on Const
          */
-        template <bool Const = Const> std::enable_if_t<Const, reference> operator*() const
+        template <bool Const_ = Const> std::enable_if_t<Const_, reference> operator*() const
         {
             return *(*_wrapped);
         }
 
-        template <bool Const = Const> std::enable_if_t<!Const, reference> operator*()
+        template <bool Const_ = Const> std::enable_if_t<!Const_, reference> operator*()
         {
             return *(*_wrapped);
         }
 
-        template <bool Const = Const> std::enable_if_t<Const, pointer> operator->() const
+        template <bool Const_ = Const> std::enable_if_t<Const_, pointer> operator->() const
         {
             return *_wrapped;
         }
 
-        template <bool Const = Const> std::enable_if_t<!Const, pointer> operator->()
+        template <bool Const_ = Const> std::enable_if_t<!Const_, pointer> operator->()
         {
             return *_wrapped;
         }
