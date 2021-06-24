@@ -45,7 +45,7 @@ namespace Combinatorics
         };
 
         template <typename... MapArgs>
-        IdMap(Graph &graph_, MapArgs &&...args) : underlying_map(std::forward<MapArgs>(args)...), _graph(graph_)
+        explicit IdMap(Graph &graph_, MapArgs &&...args) : underlying_map(std::forward<MapArgs>(args)...), _graph(graph_)
         {
         }
 
@@ -95,11 +95,11 @@ namespace Combinatorics
     public:
         using base = IdMap<Vertex, T, Compare, Allocator>;
         using base::base;
-        Vertex &getObjectFromId(size_t id)
+        [[nodiscard]] Vertex &getObjectFromId(size_t id)
         {
             return IdMap<Vertex, T, Compare, Allocator>::_graph.getVertex(id);
         }
-        Vertex const &getObjectFromId(size_t id) const
+        [[nodiscard]] Vertex const &getObjectFromId(size_t id) const
         {
             return IdMap<Vertex, T, Compare, Allocator>::_graph.getVertex(id);
         }
@@ -112,11 +112,11 @@ namespace Combinatorics
     public:
         using base = IdMap<Edge, T, Compare, Allocator>;
         using base::base;
-        Edge &getObjectFromId(size_t id)
+        [[nodiscard]] Edge &getObjectFromId(size_t id)
         {
             return base::_graph.getVertex(id);
         }
-        Edge const &getObjectFromId(size_t id) const
+        [[nodiscard]] Edge const &getObjectFromId(size_t id) const
         {
             return IdMap<Vertex, T, Compare, Allocator>::_graph.getVertex(id);
         }

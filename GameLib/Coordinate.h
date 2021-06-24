@@ -12,13 +12,13 @@ class Coordinate
 public:
     Coordinate(int x, int y);
 
-    int x() const;
-    int y() const;
+    [[nodiscard]] int x() const;
+    [[nodiscard]] int y() const;
 
-    Coordinate getLeftCoordinate() const;
-    Coordinate getRightCoordinate() const;
-    Coordinate getAboveCoordinate() const;
-    Coordinate getBelowCoordinate() const;
+    [[nodiscard]] Coordinate getLeftCoordinate() const;
+    [[nodiscard]] Coordinate getRightCoordinate() const;
+    [[nodiscard]] Coordinate getAboveCoordinate() const;
+    [[nodiscard]] Coordinate getBelowCoordinate() const;
     virtual bool operator==(const Coordinate &other) const;
 
 private:

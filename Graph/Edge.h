@@ -22,26 +22,26 @@ namespace Combinatorics
         // C'tor
         explicit Edge(EdgeId id_, VertexId ep1_, VertexId ep2_, Graph const &graph_);
 
-        Vertex const &getEndpoint1() const;
-        Vertex const &getEndpoint2() const;
+        [[nodiscard]] Vertex const &getEndpoint1() const;
+        [[nodiscard]] Vertex const &getEndpoint2() const;
 
         // returns the endpoint which is not v
-        Vertex const &getOtherEndpoint(Vertex const &v) const;
+        [[nodiscard]] Vertex const &getOtherEndpoint(Vertex const &v) const;
 
         // checks whether this edge is adjazant with v
-        bool isAdjiazent(Vertex const &v) const;
+        [[nodiscard]] bool isAdjiazent(Vertex const &v) const;
 
         // checks whether this edge is adjazant with v
-        bool isAdjiazent(VertexId v) const;
+        [[nodiscard]] bool isAdjiazent(VertexId v) const;
 
         // Checks whether this edge connects v and w
-        bool connects(Vertex const &v, Vertex const &w) const;
+        [[nodiscard]] bool connects(Vertex const &v, Vertex const &w) const;
 
         // Checks whether this edge connects v and w
-        bool connects(VertexId v, VertexId w) const;
+        [[nodiscard]] bool connects(VertexId v, VertexId w) const;
 
         // get id of edge
-        EdgeId getId() const;
+        [[nodiscard]] EdgeId getId() const;
 
     private:
         EdgeId _id;

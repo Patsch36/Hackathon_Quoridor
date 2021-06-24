@@ -42,18 +42,18 @@ namespace Combinatorics
         explicit Graph(VertexId n);
 
         // get vertex by id
-        Vertex const &getVertex(VertexId id) const;
+        [[nodiscard]] Vertex const &getVertex(VertexId id) const;
         Vertex &getVertex(VertexId id);
 
         // get edge by id
-        Edge const &getEdge(EdgeId id) const;
+        [[nodiscard]] Edge const &getEdge(EdgeId id) const;
         Edge &getEdge(EdgeId id);
 
         // get number of vertices
-        VertexId numVertices() const;
+        [[nodiscard]] VertexId numVertices() const;
 
         // get number of edges
-        EdgeId numEdges() const;
+        [[nodiscard]] EdgeId numEdges() const;
 
         // add a vertex and get it
         Vertex &addVertex();
@@ -68,45 +68,45 @@ namespace Combinatorics
         Edge const &addEdge(VertexId ep1, VertexId ep2);
 
         // get iterator to the first vertex
-        VertexIterator vertexBegin();
-        VertexConstIterator vertexBegin() const;
+        [[nodiscard]] VertexIterator vertexBegin();
+        [[nodiscard]] VertexConstIterator vertexBegin() const;
 
         // get iterator to the last vertex
-        VertexIterator vertexEnd();
-        VertexConstIterator vertexEnd() const;
+        [[nodiscard]] VertexIterator vertexEnd();
+        [[nodiscard]] VertexConstIterator vertexEnd() const;
 
         // get iterator to the first edge
-        EdgeIterator edgeBegin();
-        EdgeConstIterator edgeBegin() const;
+        [[nodiscard]] EdgeIterator edgeBegin();
+        [[nodiscard]] EdgeConstIterator edgeBegin() const;
 
         // get iterator to the last edge
-        EdgeIterator edgeEnd();
-        EdgeConstIterator edgeEnd() const;
+        [[nodiscard]] EdgeIterator edgeEnd();
+        [[nodiscard]] EdgeConstIterator edgeEnd() const;
 
         // get range of edges
-        EdgeRange edgeRange();
-        EdgeConstRange edgeRange() const;
+        [[nodiscard]] EdgeRange edgeRange();
+        [[nodiscard]] EdgeConstRange edgeRange() const;
 
         // get range of vertices
-        VertexRange vertexRange();
-        VertexConstRange vertexRange() const;
+        [[nodiscard]] VertexRange vertexRange();
+        [[nodiscard]] VertexConstRange vertexRange() const;
 
         // prints the graph human readable on INFO level
         void printHumanReadable() const;
 
         // returns true if and only if there is an edge connecting v and w
-        bool hasEdge(VertexId v, VertexId w) const;
+        [[nodiscard]] bool hasEdge(VertexId v, VertexId w) const;
 
         // returns true if and only if there is an edge connecting v and w
-        bool hasEdge(Vertex const &v, Vertex const &w) const;
+        [[nodiscard]] bool hasEdge(Vertex const &v, Vertex const &w) const;
 
         // returns the EdgeId of the Edge {v,w} if it exists.
         // If no edge {v,w} exists INVALID_EDGE_ID is returned
-        EdgeId findEdge(VertexId v, VertexId w) const;
+        [[nodiscard]] EdgeId findEdge(VertexId v, VertexId w) const;
 
         // returns the EdgeId of the Edge {v,w} if it exists.
         // If no edge {v,w} exists INVALID_EDGE_ID is returned
-        EdgeId findEdge(Vertex const &v, Vertex const &w) const;
+        [[nodiscard]] EdgeId findEdge(Vertex const &v, Vertex const &w) const;
 
         // Remove edge {v,w}. This is an O(m) operation given the current graph implementation
         void removeEdge(VertexId v, VertexId w);
