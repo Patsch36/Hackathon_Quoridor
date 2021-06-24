@@ -15,8 +15,6 @@ namespace Combinatorics
     ///////
     /// Init static member
     Graph::Logger Graph::_logger;
-    VertexId Graph::INVALID_VERTEX_ID = std::numeric_limits<VertexId>::max();
-    EdgeId Graph::INVALID_EDGE_ID = std::numeric_limits<EdgeId>::max();
 
     Graph::Graph() : _vertices(), _edges()
     {

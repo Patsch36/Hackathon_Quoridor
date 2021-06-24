@@ -117,8 +117,8 @@ namespace Combinatorics
         // Removes all edges inside an container c. Pass by copy is intended since we have to sort the container
         template <typename EdgeIdContainer> void removeEdges(EdgeIdContainer c);
 
-        static VertexId INVALID_VERTEX_ID;
-        static EdgeId INVALID_EDGE_ID;
+        constexpr static VertexId INVALID_VERTEX_ID = std::numeric_limits<VertexId>::max();
+        constexpr static EdgeId INVALID_EDGE_ID = std::numeric_limits<EdgeId>::max();
 
     private:
         VertexPtrContainer _vertices;
