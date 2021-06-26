@@ -21,6 +21,6 @@ Ihr bekommt von uns:
 
 clang tidy ist ein static analyzer tool, damit kann man schlechten code style finden. Bitte benutzt das. für visual studio gibt es [hier eine anleitung](https://docs.microsoft.com/en-us/cpp/code-quality/clang-tidy?view=msvc-160)
 
-clang format ist ein formater tool, dass den Code automatisch formatieren kann dass der code egal von wem geschrieben immer im gleichen style ist. in visual studio [gibt es hier eine anleitung.](https://devblogs.microsoft.com/cppblog/clangformat-support-in-visual-studio-2017-15-7-preview-1/)
+clang format ist ein formater tool, dass den Code automatisch formatieren kann dass der code egal von wem geschrieben immer im gleichen style ist. in visual studio(Str.+k+d zum ausführen) [gibt es hier eine anleitung.](https://devblogs.microsoft.com/cppblog/clangformat-support-in-visual-studio-2017-15-7-preview-1/)
 
 wer visual studio code benutzt sollte sich die clangd extension anschauen. in clion sollte alles automatisch gehen und bei anderen IDEs habe ich keine ahnung, da müsst ihr selber was finden.
