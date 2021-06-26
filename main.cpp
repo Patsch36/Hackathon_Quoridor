@@ -1,5 +1,5 @@
-#include <iostream>
 #include "GameLib/GameField.h"
+#include <iostream>
 
 int main()
 {
