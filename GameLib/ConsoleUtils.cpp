@@ -1,7 +1,9 @@
 #include "ConsoleUtils.h"
 
+#include <cstddef>
 #include <ctime>
 #include <iostream>
+#include <string>
 
 using std::cin;
 using std::cout;
@@ -77,4 +79,19 @@ int ConsoleUtils::safelyReadInteger(const string &message)
         result = readInteger();
     }
     return result;
+}
+
+std::string ConsoleUtils::colorString(std::string str, std::vector<Colors> opts)
+{
+    std::string buff = "\033[";
+    for (std::size_t i = 0; i < opts.size(); i++)
+    {
+        buff += std::to_string(static_cast<int>(opts[i]));
+        if (i < opts.size()-1)
+        {
+            buff+=';';
+        }
+    }
+    buff += "m";
+    return buff + str + "\033[0m";
 }
