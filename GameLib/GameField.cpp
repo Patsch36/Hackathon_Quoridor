@@ -8,11 +8,11 @@
 using Combinatorics::Edge;
 using Combinatorics::Graph;
 
-static std::string const delimiter_x_open = " ";
-static std::string const delimiter_x_closed = "|";
+static std::string const delimiter_x_open = "   ";
+static std::string const delimiter_x_closed = "---";
 static std::string const delimiter_x_barrier_check = "S";
 static std::string const delimiter_y_open = " ";
-static std::string const delimiter_y_closed = "-";
+static std::string const delimiter_y_closed = "|";
 static std::string const delimiter_y_barrier_check = "~";
 
 GameField::GameField()
@@ -66,7 +66,6 @@ std::ostream &operator<<(std::ostream &os, const GameField &gf)
     return os;
 }
 
-
 void GameField::printDelimiter(std::string &result, Coordinate const &coordinate) const
 {
     if (coordinate.y() != 0)
@@ -80,7 +79,7 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
             result.append(delimiter_y_closed);
         }
     }
-    result.append(" ");
+    result.append(delimiter_x_open);
 }
 
 void GameField::printContent(std::string &result, Coordinate const &coordinate) const
