@@ -81,15 +81,15 @@ int ConsoleUtils::safelyReadInteger(const string &message)
     return result;
 }
 
-std::string ConsoleUtils::colorString(std::string str, std::vector<Colors> opts)
+std::string ConsoleUtils::colorString(const std::string &str, const std::vector<Colors> &opts)
 {
     std::string buff = "\033[";
     for (std::size_t i = 0; i < opts.size(); i++)
     {
         buff += std::to_string(static_cast<int>(opts[i]));
-        if (i < opts.size()-1)
+        if (i < opts.size() - 1)
         {
-            buff+=';';
+            buff += ';';
         }
     }
     buff += "m";

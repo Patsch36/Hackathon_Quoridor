@@ -40,5 +40,5 @@ namespace ConsoleUtils
     std::string readString(const std::string &message, int maxLength = INT_MAX);
     int safelyReadInteger(const std::string &message);
     int safelyReadInteger(const std::string &message, int min, int max);
-    std::string colorString(std::string str, std::vector<Colors> opts);
+    std::string colorString(const std::string &str,const std::vector<Colors>& opts);
 } // namespace ConsoleUtils
