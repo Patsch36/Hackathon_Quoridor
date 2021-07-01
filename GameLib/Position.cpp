@@ -23,8 +23,9 @@ Combinatorics::Vertex &Position::getVertex()
 
 std::string Position::toString() const
 {
-    // you might want to adapt this method so that the field is not always empty
-    return "+";
+    // TODO you might want to adapt this method so that the field is not always empty
+    // if a player is at this position an X should be put there (if possible colored.)
+    return " ";
 }
 
 bool Position::operator==(const Position &other) const
