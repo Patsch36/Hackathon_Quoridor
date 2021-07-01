@@ -24,7 +24,7 @@ Combinatorics::Vertex &Position::getVertex()
 std::string Position::toString() const
 {
     // you might want to adapt this method so that the field is not always empty
-    return "o";
+    return "+";
 }
 
 bool Position::operator==(const Position &other) const
