@@ -8,6 +8,9 @@ add_library(GameLib
     Position.cpp
     Coordinate.h
     Coordinate.cpp
- "IGame.h" "IPlayer.h" "Barrier.h")
+    AbstractGame.h
+    AbstractPlayer.h
+    HumanPlayer.h
+    Barrier.h)
 
 set_project_warnings(GameLib)
