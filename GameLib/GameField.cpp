@@ -2,6 +2,7 @@
 #include "../Graph/Algorithm/BreadthFirstSearch.h"
 #include "Position.h"
 #include "cassert"
+#include <cstddef>
 #include <list>
 #include <set>
 
@@ -9,11 +10,12 @@ using Combinatorics::Edge;
 using Combinatorics::Graph;
 
 static std::string const delimiter_x_open = "   ";
-static std::string const delimiter_x_closed = "---";
+static std::string const delimiter_x_closed = " | ";
 static std::string const delimiter_x_barrier_check = "S";
-static std::string const delimiter_y_open = " ";
-static std::string const delimiter_y_closed = "|";
+static std::string const delimiter_y_open = "   ";
+static std::string const delimiter_y_closed = "---";
 static std::string const delimiter_y_barrier_check = "~";
+constexpr char center_delimiter = '+';
 
 GameField::GameField()
 {
@@ -38,22 +40,28 @@ GameField::GameField()
 
 GameField::~GameField() = default;
 
-
 std::string GameField::toString() const
 {
     std::string result;
     for (int y = 0; y < s_height; y++)
     {
+        result += center_delimiter;
         for (int x = 0; x < s_width; x++)
         {
             printDelimiter(result, Coordinate(x, y));
         }
         result.append("\n");
+        result.append("|");
         for (int x = 0; x < s_width; x++)
         {
             printContent(result, Coordinate(x, y));
         }
-        result.append("\n");
+        result.append(delimiter_x_closed + "\n");
+    }
+    result += center_delimiter;
+    for (int x = 0; x < s_width; x++)
+    {
+        result.append(delimiter_y_closed + center_delimiter);
     }
     return result;
 }
@@ -79,7 +87,11 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
             result.append(delimiter_y_closed);
         }
     }
-    result.append(delimiter_x_open);
+    else
+    {
+        result.append(delimiter_y_closed);
+    }
+    result += center_delimiter;
 }
 
 void GameField::printContent(std::string &result, Coordinate const &coordinate) const
@@ -94,6 +106,11 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         {
             result.append(delimiter_x_closed);
         }
+    }
+    else
+    {
+        // append empty space in the beginning that the format does not shift
+        result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
     result.append(getPosition(coordinate).toString());
 }
