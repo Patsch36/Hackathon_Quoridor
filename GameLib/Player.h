@@ -1,11 +1,18 @@
 #pragma once
-#include "Position.h"
+#include "IPlayer.h"
 
-class Player
+class Player : IPlayer
 {
 public:
-    Player();
+    Player() override;
+    bool move() override;
+
+    // Position getPosition();
 
 private:
-    Position pos;
+    // Position m_position;
+    // Barrier[BarrierCount] m_barrier;
+    const int BarrierCount = 3 override;
+
+    bool BuildBarrier();
 }

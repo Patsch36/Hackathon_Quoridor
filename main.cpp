@@ -9,5 +9,10 @@ int main()
                                            {Colors::FG_black, Colors::BG_yellow, Colors::X_underline});
     GameField field;
     std::cout << field << std::endl;
+    //IGame *game = new Quoridor();
+    //game->Confic();
+    //game->run();
+    //delete(game);
     return 0;
 }
+ 
