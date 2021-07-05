@@ -9,7 +9,7 @@
 using Combinatorics::Edge;
 using Combinatorics::Graph;
 
-static std::string const delimiter_player = "X";
+//static std::string const delimiter_player = "X";
 static std::string const delimiter_x_open = "   ";
 static std::string const delimiter_x_closed = " |  ";
 static std::string const delimiter_x_barrier_check = " S ";
@@ -104,7 +104,7 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
             // Maybe PLayer.Postion here implement
             // if (Game.getPlayerCoordinate(coordinate))
             //   result.append(delimiter_player);         //Or overload methode Position::toString()?
-            if (Game.getBarrierCoordinate(coordinate)) // Or Barrier.getCoordinate()??
+            if (Game.getBarrierCoordinate(coordinate)) //Interrogate all Players Barriers
                 result.append(delimiter_x_barrier_check);
             else
                 result.append(delimiter_x_open);

@@ -33,7 +33,8 @@ std::string Position::toStringPlayer() const
 {
     // TODO you might want to adapt this method so that the field is not always empty
     // if a player is at this position an X should be put there (if possible colored.)
-
+    //oder hier fkt zum rausfinden welcher player: nachteil hier müsste Game eingebunden werden
+    //                                             vorteil brauchen nicht noch mehr fkt oder müssen hier parameter mitgeben
     return "X";
 }
 
