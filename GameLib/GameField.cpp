@@ -9,9 +9,10 @@
 using Combinatorics::Edge;
 using Combinatorics::Graph;
 
+static std::string const delimiter_player = "X";
 static std::string const delimiter_x_open = "   ";
-static std::string const delimiter_x_closed = " | ";
-static std::string const delimiter_x_barrier_check = "S";
+static std::string const delimiter_x_closed = " |  ";
+static std::string const delimiter_x_barrier_check = " S ";
 static std::string const delimiter_y_open = "   ";
 static std::string const delimiter_y_closed = "---";
 static std::string const delimiter_y_barrier_check = "~";
@@ -100,7 +101,13 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getLeftCoordinate()).getVertex()))
         {
-            result.append(delimiter_x_open);
+            // Maybe PLayer.Postion here implement
+            // if (Game.getPlayerCoordinate(coordinate))
+            //   result.append(delimiter_player);         //Or overload methode Position::toString()?
+            if (Game.getBarrierCoordinate(coordinate)) // Or Barrier.getCoordinate()??
+                result.append(delimiter_x_barrier_check);
+            else
+                result.append(delimiter_x_open);
         }
         else
         {
@@ -112,7 +119,12 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         // append empty space in the beginning that the format does not shift
         result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
-    result.append(getPosition(coordinate).toString());
+
+    if (Game.getPlayerCoordinate(coordinate))   //für eigene farben muss hier andere funktion rein um rauszufinden welcher player und welche farbe zurückgegeben werden soll
+        result.append(getPosition(coordinate).toStringPlayer());    //hier funktion um rausfinden welcher player und welche farbe 
+                                                                    //zurückgegeben werden soll Diese funktion am besten im jeweiligen Player selbst um jedem eindeutige Farbe zuzuweisen?
+    else
+        result.append(getPosition(coordinate).toString());
 }
 
 const Position &GameField::getPosition(Coordinate const &coordinate) const

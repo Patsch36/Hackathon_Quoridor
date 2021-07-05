@@ -25,7 +25,16 @@ std::string Position::toString() const
 {
     // TODO you might want to adapt this method so that the field is not always empty
     // if a player is at this position an X should be put there (if possible colored.)
+
     return " ";
+}
+
+std::string Position::toStringPlayer() const
+{
+    // TODO you might want to adapt this method so that the field is not always empty
+    // if a player is at this position an X should be put there (if possible colored.)
+
+    return "X";
 }
 
 bool Position::operator==(const Position &other) const

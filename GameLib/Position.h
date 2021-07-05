@@ -13,6 +13,7 @@ public:
     [[nodiscard]] Combinatorics::Vertex const &getVertex() const;
     [[nodiscard]] Combinatorics::Vertex &getVertex();
     [[nodiscard]] std::string toString() const;
+    [[nodiscard]] std::string toStringPlayer() const;
     bool operator==(const Position &other) const;
     bool operator==(const Coordinate &other) const override;
 
