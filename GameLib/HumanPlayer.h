@@ -4,8 +4,5 @@
 class HumanPlayer : AbstractPlayer
 {
 public:
-    bool move() override;
-
-private:
-    bool BuildBarrier();
+    void playerTurn() override;
 }

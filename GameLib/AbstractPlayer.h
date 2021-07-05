@@ -1,21 +1,23 @@
 #pragma once
 #include "Barrier.h"
 #include "Position.h"
+#include "Direction.h"
 #include <cstddef>
 #include <vector>
 
 class AbstractPlayer
 {
 public:
-    AbstractPlayer();
+    AbstractPlayer(const Position& startPos);
     virtual ~AbstractPlayer() = 0;
-    virtual bool move() = 0;
+    virtual void playerTurn() = 0; // Turn of player (console dialog or automatic for bot player)
 
     Position getPosition();
 
 protected:
-    void setPosition(const Position &pos);
-    void addBarrier(const Barrier &barrier);
+    void move(const Direction &direction);
+    bool addBarrier(const Barrier &barrier); //returns false when no barriers available anymore
+
 
 private:
     Position m_position;

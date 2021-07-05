@@ -4,6 +4,7 @@ QuoridorGame::QuoridorGame() = default;
 
 void QuoridorGame::run()
 {
+    configGame();
     while (!gameOver())
     {
         round();

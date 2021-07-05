@@ -7,7 +7,7 @@
 class QuoridorGame : AbstractGame
 {
 public:
-    QuoridorGame();
+    QuoridorGame(); // dialog for creating player and stuff.
     void run() override;
 
 private:
@@ -16,4 +16,5 @@ private:
     void round() override;
     bool gameOver() override;
     void printResult() override;
+    void configGame() override;
 };

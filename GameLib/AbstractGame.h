@@ -7,14 +7,11 @@
 class AbstractGame
 {
 public:
+    virtual void configGame() = 0;
     virtual void run() = 0;
     virtual void printResult() = 0;
 
 protected:
     virtual void round() = 0;
     virtual bool gameOver() = 0;
-
-private:
-    GameField m_field;
-    std::array<std::unique_ptr<AbstractPlayer>, 2> m_player;
 };
