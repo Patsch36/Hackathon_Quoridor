@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../Graph/Graph.h"
 #include "Position.h"
 #include "AbstractPlayer.h"
@@ -16,7 +15,7 @@ class GameField
 {
 public:
     GameField();
-    GameField(std::shared_ptr<AbstractPlayer> player1, std::shared_ptr<AbstractPlayer> player2);
+    GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2);
     virtual ~GameField();
     [[nodiscard]] std::string toString() const;
 
@@ -27,8 +26,8 @@ public:
 
     
 private:
-    std::shared_ptr<AbstractPlayer> m_player1;
-    std::shared_ptr<AbstractPlayer> m_player2;
+    std::weak_ptr<AbstractPlayer> m_player1;
+    std::weak_ptr<AbstractPlayer> m_player2;
     Position &getPosition(Coordinate const &coordinates);
     // Returns corresponding EdgeId and Graph::INVALID_EDGE_ID if edge is already removed
     [[nodiscard]] Combinatorics::EdgeId getEdgeIdBetweenCoordinates(Coordinate const &a, Coordinate const &b) const;

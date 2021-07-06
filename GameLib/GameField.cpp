@@ -39,7 +39,7 @@ GameField::GameField()
     }
 }
 
-GameField::GameField(std::shared_ptr<AbstractPlayer> player1, std::shared_ptr<AbstractPlayer> player2)
+GameField::GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
     : m_player1(player1), m_player2(player2)
 {
     for (int x = 0; x < s_width; x++)
@@ -141,18 +141,16 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         // append empty space in the beginning that the format does not shift
         result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
-
-    // if (m_player1.getPosition() == coordinate)   //für eigene farben muss hier andere funktion rein um rauszufinden
-    // welcher player und welche farbe zurückgegeben werden soll
-    //    result.append(getPosition(coordinate).toStringPlayer1());    //hier funktion um rausfinden welcher player und
-    //    welche farbe
-    //                                                                //zurückgegeben werden soll Diese funktion am besten im
-    //                                                                jeweiligen Player selbst um jedem eindeutige Farbe
-    //                                                                zuzuweisen?
-    // else if (m_player2.getPosition() == coordinate)
-    //    result.append(getPosition(coordinate).toStringPlayer1());
-    // else
-    result.append(getPosition(coordinate).toString());
+    
+    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
+    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
+    if (player1->getPosition() == coordinate){
+        result.append(player1->toString());
+    }else if(player2->getPosition() == coordinate){
+        result.append(player2->toString());
+    }else{
+        result.append(getPosition(coordinate).toString());
+    }
 }
 
 const Position &GameField::getPosition(Coordinate const &coordinate) const

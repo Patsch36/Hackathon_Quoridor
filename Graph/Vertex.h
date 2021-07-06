@@ -22,7 +22,6 @@ namespace Combinatorics
     class Vertex
     {
         friend class Combinatorics::Graph;
-
     public:
         // Construct vertex without any adjazent edges
         explicit Vertex(VertexId id_, Graph const &graph);

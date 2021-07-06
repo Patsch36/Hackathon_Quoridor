@@ -16,12 +16,11 @@ int main()
     Combinatorics::Graph graph;
     Combinatorics::Vertex vertex(1, graph);
     Position Pos(0, 5, vertex);
-    AbstractPlayer *Player1 = new HumanPlayer(Pos);
-    AbstractPlayer *Player2 = new HumanPlayer(Pos);
+    AbstractPlayer *Player = new HumanPlayer(Pos);
     //HumanPlayer Player1(Pos);
     //HumanPlayer Player2(Pos);
 
-    GameField field(std::make_shared<AbstractPlayer>(Player1),std::make_shared<AbstractPlayer>(Player2));
+    GameField field(std::make_shared<HumanPlayer>(Pos),std::make_shared<HumanPlayer>(Pos));
     std::cout << field << std::endl;
     //IGame *game = new Quoridor();
     //game->Confic();

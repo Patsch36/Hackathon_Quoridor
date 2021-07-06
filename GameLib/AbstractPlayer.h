@@ -2,17 +2,19 @@
 #include "Barrier.h"
 #include "Direction.h"
 #include "Position.h"
+#include "ConsoleUtils.h"
 #include <cstddef>
 #include <vector>
 
 class AbstractPlayer
 {
 public:
-    AbstractPlayer(const Position &startPos);
+    explicit AbstractPlayer(const Position &startPos, const std::vector<ConsoleUtils::Colors> &player_color);
     virtual ~AbstractPlayer() = 0;
     virtual void playerTurn() = 0; // Turn of player (console dialog or automatic for bot player)
 
     Position getPosition();
+    std::string toString();
 
 protected:
     void move(const Direction &direction);
@@ -21,5 +23,6 @@ protected:
 private:
     Position m_position;
     std::vector<Barrier> m_barriers;
+    std::string m_playerCharacter;
     int barrierCount = 3; // all players have 3 Barriers.
 };
