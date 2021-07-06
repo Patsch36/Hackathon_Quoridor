@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <list>
 #include <set>
+#include <stdexcept>
+#include <utility>
 
 using Combinatorics::Edge;
 using Combinatorics::Graph;
@@ -40,7 +42,7 @@ GameField::GameField()
 }
 
 GameField::GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
-    : m_player1(player1), m_player2(player2)
+    : m_player1(std::move(player1)), m_player2(std::move(player2))
 {
     for (int x = 0; x < s_width; x++)
     {
@@ -117,6 +119,7 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
     result += center_delimiter;
 }
 
+// TODO(Sascha): die funktion ist zu lang, bitte kürzer machen und Hilfsfunktionen erstellen!
 void GameField::printContent(std::string &result, Coordinate const &coordinate) const
 {
     if (coordinate.x() != 0)
@@ -141,14 +144,25 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         // append empty space in the beginning that the format does not shift
         result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
-    
+
+    if (m_player1.expired() || m_player2.expired())
+    {
+        throw std::runtime_error("the players can't be deleted before the gameField is deleted.");
+        //? maybe use shared pointers instead of weak pointers? I'm not sure if this would be better.
+    }
+
     std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
     std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
-    if (player1->getPosition() == coordinate){
+    if (player1->getCoordinate() == coordinate)
+    {
         result.append(player1->toString());
-    }else if(player2->getPosition() == coordinate){
+    }
+    else if (player2->getCoordinate() == coordinate)
+    {
         result.append(player2->toString());
-    }else{
+    }
+    else
+    {
         result.append(getPosition(coordinate).toString());
     }
 }

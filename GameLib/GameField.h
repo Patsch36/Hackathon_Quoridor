@@ -1,15 +1,13 @@
 #pragma once
 #include "../Graph/Graph.h"
-#include "Position.h"
 #include "AbstractPlayer.h"
-
+#include "Position.h"
 
 #include <array>
+#include <iostream>
 #include <list>
 #include <memory>
 #include <string>
-#include <iostream>
-
 
 class GameField
 {
@@ -23,8 +21,6 @@ public:
 
     [[nodiscard]] const Position &getPosition(Coordinate const &coordinates) const;
 
-
-    
 private:
     std::weak_ptr<AbstractPlayer> m_player1;
     std::weak_ptr<AbstractPlayer> m_player2;

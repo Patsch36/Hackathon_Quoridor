@@ -1,18 +1,21 @@
-#pragma once
 #include "AbstractPlayer.h"
 #include <exception>
 
-AbstractPlayer::AbstractPlayer(const Position &startPos,const std::vector<ConsoleUtils::Colors>& player_color) : m_postion(startPos)
+AbstractPlayer::AbstractPlayer(Coordinate startCoords, const std::vector<ConsoleUtils::Colors> &player_color)
+    : m_coordinate(std::move(startCoords))
 {
-    if(player_color.size()<1){
+    if (player_color.empty())
+    {
         throw std::runtime_error("player has to be colored!");
     }
-    m_playerCharacter = ConsoleUtils::colorString("X",player_color);
+    m_playerCharacter = ConsoleUtils::colorString("X", player_color);
 }
 
-Position AbstractPlayer::getPosition()
+AbstractPlayer::~AbstractPlayer() = default; // selbst pure virtual destruktoren müssen definiert werden.
+
+Coordinate AbstractPlayer::getCoordinate()
 {
-    return m_position;
+    return m_coordinate;
 }
 
 std::string AbstractPlayer::toString()
@@ -22,28 +25,29 @@ std::string AbstractPlayer::toString()
 
 void AbstractPlayer::move(const Direction &direction)
 {
-    //switch (direction)
-    //{
-    //case up:
-    //    m_postion = m_position.getAboveCoordinate();
-    //    break;
-    //case down:
-    //    m_postion = m_position.getBelowCoordinate();
-    //    break;
-    //case left:
-    //    m_postion = m_position.getLeftCoordinate();
-    //    break;
-    //case right:
-    //    m_postion = m_position.getRightCoordinate();
-    //    break;
-    //}
+    switch (direction)
+    {
+    case Direction::up:
+        m_coordinate = m_coordinate.getAboveCoordinate();
+        break;
+    case Direction::down:
+        m_coordinate = m_coordinate.getBelowCoordinate();
+        break;
+    case Direction::left:
+        m_coordinate = m_coordinate.getLeftCoordinate();
+        break;
+    case Direction::right:
+        m_coordinate = m_coordinate.getRightCoordinate();
+        break;
+    }
 }
 
 bool AbstractPlayer::addBarrier(const Barrier &barrier)
 {
-    // Position of Barrier has to be declarated in playerTurn??
-    //if (barrierCount > 0)
-    //{
-    //    m_barriers[barrierCount] = barrier;
-    //}
+    /*// Position of Barrier has to be declarated in playerTurn??
+    if (barrierCount > 0)
+    {
+        m_barriers[barrierCount] = barrier;
+    }*/
+    return false;
 }
