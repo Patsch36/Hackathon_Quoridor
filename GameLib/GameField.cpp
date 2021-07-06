@@ -9,7 +9,7 @@
 using Combinatorics::Edge;
 using Combinatorics::Graph;
 
-//static std::string const delimiter_player = "X";
+// static std::string const delimiter_player = "X";
 static std::string const delimiter_x_open = "   ";
 static std::string const delimiter_x_closed = " |  ";
 static std::string const delimiter_x_barrier_check = " S ";
@@ -19,6 +19,28 @@ static std::string const delimiter_y_barrier_check = "~";
 constexpr char center_delimiter = '+';
 
 GameField::GameField()
+{
+    for (int x = 0; x < s_width; x++)
+    {
+        for (int y = 0; y < s_height; y++)
+        {
+            m_field[x][y] = std::make_unique<Position>(Coordinate(x, y), m_graph.addVertex());
+            if (y != 0)
+            {
+                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
+                                getPosition(Coordinate(x, y).getBelowCoordinate()).getVertex());
+            }
+            if (x != 0)
+            {
+                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
+                                getPosition(Coordinate(x, y).getLeftCoordinate()).getVertex());
+            }
+        }
+    }
+}
+
+GameField::GameField(std::shared_ptr<AbstractPlayer> player1, std::shared_ptr<AbstractPlayer> player2)
+    : m_player1(player1), m_player2(player2)
 {
     for (int x = 0; x < s_width; x++)
     {
@@ -102,12 +124,12 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getLeftCoordinate()).getVertex()))
         {
             // Maybe PLayer.Postion here implement
-            // if (Game.getPlayerCoordinate(coordinate))
+            // if (m_Game.getPlayerCoordinate(coordinate))
             //   result.append(delimiter_player);         //Or overload methode Position::toString()?
-            if (Game.getBarrierCoordinate(coordinate)) //Interrogate all Players Barriers
-                result.append(delimiter_x_barrier_check);
-            else
-                result.append(delimiter_x_open);
+            // if (m_Game.getBarrierCoordinate(coordinate)) //Interrogate all Players Barriers
+            //    result.append(delimiter_x_barrier_check);
+            // else
+            result.append(delimiter_x_open);
         }
         else
         {
@@ -120,11 +142,17 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
 
-    if (Game.getPlayerCoordinate(coordinate))   //für eigene farben muss hier andere funktion rein um rauszufinden welcher player und welche farbe zurückgegeben werden soll
-        result.append(getPosition(coordinate).toStringPlayer());    //hier funktion um rausfinden welcher player und welche farbe 
-                                                                    //zurückgegeben werden soll Diese funktion am besten im jeweiligen Player selbst um jedem eindeutige Farbe zuzuweisen?
-    else
-        result.append(getPosition(coordinate).toString());
+    // if (m_player1.getPosition() == coordinate)   //für eigene farben muss hier andere funktion rein um rauszufinden
+    // welcher player und welche farbe zurückgegeben werden soll
+    //    result.append(getPosition(coordinate).toStringPlayer1());    //hier funktion um rausfinden welcher player und
+    //    welche farbe
+    //                                                                //zurückgegeben werden soll Diese funktion am besten im
+    //                                                                jeweiligen Player selbst um jedem eindeutige Farbe
+    //                                                                zuzuweisen?
+    // else if (m_player2.getPosition() == coordinate)
+    //    result.append(getPosition(coordinate).toStringPlayer1());
+    // else
+    result.append(getPosition(coordinate).toString());
 }
 
 const Position &GameField::getPosition(Coordinate const &coordinate) const

@@ -2,6 +2,7 @@
 
 #include "../Graph/Graph.h"
 #include "Position.h"
+#include "AbstractPlayer.h"
 
 
 #include <array>
@@ -15,6 +16,7 @@ class GameField
 {
 public:
     GameField();
+    GameField(std::shared_ptr<AbstractPlayer> player1, std::shared_ptr<AbstractPlayer> player2);
     virtual ~GameField();
     [[nodiscard]] std::string toString() const;
 
@@ -22,7 +24,11 @@ public:
 
     [[nodiscard]] const Position &getPosition(Coordinate const &coordinates) const;
 
+
+    
 private:
+    std::shared_ptr<AbstractPlayer> m_player1;
+    std::shared_ptr<AbstractPlayer> m_player2;
     Position &getPosition(Coordinate const &coordinates);
     // Returns corresponding EdgeId and Graph::INVALID_EDGE_ID if edge is already removed
     [[nodiscard]] Combinatorics::EdgeId getEdgeIdBetweenCoordinates(Coordinate const &a, Coordinate const &b) const;
