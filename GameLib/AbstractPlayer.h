@@ -1,19 +1,21 @@
 #pragma once
+
 #include "Barrier.h"
+#include "ConsoleUtils.h"
 #include "Direction.h"
 #include "Position.h"
-#include "ConsoleUtils.h"
 #include <cstddef>
 #include <vector>
+
 
 class AbstractPlayer
 {
 public:
-    explicit AbstractPlayer(const Position &startPos, const std::vector<ConsoleUtils::Colors> &player_color);
+    explicit AbstractPlayer(Coordinate startCoords, const std::vector<ConsoleUtils::Colors> &player_color);
     virtual ~AbstractPlayer() = 0;
     virtual void playerTurn() = 0; // Turn of player (console dialog or automatic for bot player)
 
-    Position getPosition();
+    Coordinate getCoordinate();
     std::string toString();
 
 protected:
@@ -21,7 +23,7 @@ protected:
     bool addBarrier(const Barrier &barrier); // returns false when no barriers available anymore
 
 private:
-    Position m_position;
+    Coordinate m_coordinate;
     std::vector<Barrier> m_barriers;
     std::string m_playerCharacter;
     int barrierCount = 3; // all players have 3 Barriers.
