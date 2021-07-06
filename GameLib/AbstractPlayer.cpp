@@ -23,22 +23,43 @@ std::string AbstractPlayer::toString()
     return m_playerCharacter;
 }
 
+bool AbstractPlayer::fieldCheck(const Coordinate &coordinate)
+{
+    if (coordinate.x() >= 0 && coordinate.y() >= 0 && coordinate.x() <= 8 && coordinate.y() <= 8)
+        return true;
+    else
+        return false;
+}
+
 void AbstractPlayer::move(const Direction &direction)
 {
+    //? if out of field restart move in playerTurn?
     switch (direction)
     {
-    case Direction::up:
-        m_coordinate = m_coordinate.getAboveCoordinate();
-        break;
     case Direction::down:
-        m_coordinate = m_coordinate.getBelowCoordinate();
-        break;
+        if (fieldCheck(m_coordinate.getAboveCoordinate()))
+            m_coordinate = m_coordinate.getAboveCoordinate();
+        else
+            throw std::runtime_error("Player can't move out of Field");
+        return;
+    case Direction::up:
+        if (fieldCheck(m_coordinate.getBelowCoordinate()))
+            m_coordinate = m_coordinate.getBelowCoordinate();
+        else
+            throw std::runtime_error("Player can't move out of Field");
+        return;
     case Direction::left:
-        m_coordinate = m_coordinate.getLeftCoordinate();
-        break;
+        if (fieldCheck(m_coordinate.getLeftCoordinate()))
+            m_coordinate = m_coordinate.getLeftCoordinate();
+        else
+            throw std::runtime_error("Player can't move out of Field");
+        return;
     case Direction::right:
-        m_coordinate = m_coordinate.getRightCoordinate();
-        break;
+        if (fieldCheck(m_coordinate.getRightCoordinate()))
+            m_coordinate = m_coordinate.getRightCoordinate();
+        else
+            throw std::runtime_error("Player can't move out of Field");
+        return;
     }
 }
 

@@ -121,7 +121,9 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
 
 // TODO(Sascha): die funktion ist zu lang, bitte kürzer machen und Hilfsfunktionen erstellen!
 void GameField::printContent(std::string &result, Coordinate const &coordinate) const
-{
+{ 
+    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
+    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
     if (coordinate.x() != 0)
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getLeftCoordinate()).getVertex()))
@@ -129,7 +131,7 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
             // Maybe PLayer.Postion here implement
             // if (m_Game.getPlayerCoordinate(coordinate))
             //   result.append(delimiter_player);         //Or overload methode Position::toString()?
-            // if (m_Game.getBarrierCoordinate(coordinate)) //Interrogate all Players Barriers
+            // if (player1->hasBarrier(coordinate)) //Interrogate all Players Barriers
             //    result.append(delimiter_x_barrier_check);
             // else
             result.append(delimiter_x_open);
@@ -151,8 +153,7 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         //? maybe use shared pointers instead of weak pointers? I'm not sure if this would be better.
     }
 
-    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
-    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
+
     if (player1->getCoordinate() == coordinate)
     {
         result.append(player1->toString());

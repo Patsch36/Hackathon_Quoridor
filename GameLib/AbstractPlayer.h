@@ -19,6 +19,7 @@ public:
     std::string toString();
 
 protected:
+    bool fieldCheck(const Coordinate &coordinate);
     void move(const Direction &direction);
     bool addBarrier(const Barrier &barrier); // returns false when no barriers available anymore
 
