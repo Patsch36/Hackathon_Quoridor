@@ -43,13 +43,18 @@ GameField::GameField()
 
 void GameField::setPlayers(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
 {
-    m_player1 = std::move(player1);
-    m_player2 = std::move(player2);
+    m_player1 = player1;
+    m_player2 = player2;
 }
 
-FieldSize GameField::getSize() const 
+FieldSize GameField::getSize()
 {
     return {s_width,s_height};
+}
+
+Combinatorics::Graph &GameField::getGraph()
+{
+    return m_graph;
 }
 
 GameField::~GameField() = default;

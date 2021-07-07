@@ -22,21 +22,23 @@ public:
     virtual ~GameField();
     [[nodiscard]] std::string toString() const;
     void setPlayers(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2);
-    [[nodiscard]] FieldSize getSize() const;
+    [[nodiscard]] static FieldSize getSize();
 
     friend std::ostream &operator<<(std::ostream &os, const GameField &gf);
-
+    friend Barrier;
+    
     [[nodiscard]] const Position &getPosition(Coordinate const &coordinates) const;
 
 private:
+    [[nodiscard]] Position &getPosition(Coordinate const &coordinates);
+    [[nodiscard]] bool edgeBetweenCoordinatesExists(Coordinate const &a, Coordinate const &b) const;
+    [[nodiscard]] Combinatorics::Graph &getGraph();
     std::weak_ptr<AbstractPlayer> m_player1;
     std::weak_ptr<AbstractPlayer> m_player2;
-    Position &getPosition(Coordinate const &coordinates);
     // Returns corresponding EdgeId and Graph::INVALID_EDGE_ID if edge is already removed
     [[nodiscard]] Combinatorics::EdgeId getEdgeIdBetweenCoordinates(Coordinate const &a, Coordinate const &b) const;
     [[nodiscard]] Combinatorics::Edge const &getEdgeBetweenCoordinates(Coordinate const &a, Coordinate const &b) const;
     Combinatorics::Edge &getEdgeBetweenCoordinates(Coordinate const &a, Coordinate const &b);
-    [[nodiscard]] bool edgeBetweenCoordinatesExists(Coordinate const &a, Coordinate const &b) const;
 
     //////////////////
     /// Most likely you do not have to touch this

@@ -7,7 +7,7 @@
 
 using Colors = ConsoleUtils::Colors;
 
-QuoridorGame::QuoridorGame() : m_fieldSize(m_field.getSize())
+QuoridorGame::QuoridorGame() : m_fieldSize(GameField::getSize())
 {
 }
 
@@ -32,23 +32,25 @@ void QuoridorGame::configGame()
     std::vector<ConsoleUtils::Colors> colorsPlayer1{Colors::BG_yellow, Colors::FG_black};
     std::vector<ConsoleUtils::Colors> colorsPlayer2{Colors::FG_yellow};
 
+    // TODO(walkerp): some sort of player dialog
+
     m_player1 = std::make_shared<HumanPlayer>(StartPos1, colorsPlayer1);
     m_player2 = std::make_shared<HumanPlayer>(StartPos2, colorsPlayer2);
 
-    m_field.setPlayers(m_player1, m_player2);
+    m_field->setPlayers(m_player1, m_player2);
 }
 
 void QuoridorGame::round()
 {
     {
         ConsoleUtils::clearConsole();
-        std::cout << m_field << std::endl;
+        std::cout << m_field->toString() << std::endl;
         std::cout << "player1's (" << m_player1->toString() << ") Turn\n";
         m_player1->playerTurn();
     }
     {
         ConsoleUtils::clearConsole();
-        std::cout << m_field << std::endl;
+        std::cout << m_field->toString() << std::endl;
         std::cout << "player2's (" << m_player2->toString() << ") Turn\n";
         m_player2->playerTurn();
     }

@@ -14,6 +14,7 @@ add_library(GameLib
     HumanPlayer.h
     HumanPlayer.cpp
     Barrier.h
+    Barrier.cpp
     Direction.h
     QuoridorGame.h
     QuoridorGame.cpp

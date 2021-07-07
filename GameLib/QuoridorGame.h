@@ -11,7 +11,7 @@ public:
     void run() override;
 
 private:
-    GameField m_field;
+    std::shared_ptr<GameField> m_field = std::make_shared<GameField>();
     std::shared_ptr<AbstractPlayer> m_player1;
     std::shared_ptr<AbstractPlayer> m_player2;
     FieldSize m_fieldSize;
