@@ -10,7 +10,11 @@ add_library(GameLib
     Coordinate.cpp
     AbstractGame.h
     AbstractPlayer.h
+    AbstractPlayer.cpp
     HumanPlayer.h
-    Barrier.h)
+    HumanPlayer.cpp
+    Barrier.h
+    Direction.h
+    )
 
 set_project_warnings(GameLib)

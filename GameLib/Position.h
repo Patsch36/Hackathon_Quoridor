@@ -15,6 +15,7 @@ public:
     [[nodiscard]] std::string toString() const;
     bool operator==(const Position &other) const;
     bool operator==(const Coordinate &other) const override;
+   
 
 private:
     Combinatorics::Vertex &m_vertex;

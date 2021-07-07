@@ -5,19 +5,44 @@
 #include <cstddef>
 #include <list>
 #include <set>
+#include <stdexcept>
+#include <utility>
 
 using Combinatorics::Edge;
 using Combinatorics::Graph;
 
+// static std::string const delimiter_player = "X";
 static std::string const delimiter_x_open = "   ";
-static std::string const delimiter_x_closed = " | ";
-static std::string const delimiter_x_barrier_check = "S";
+static std::string const delimiter_x_closed = " |  ";
+static std::string const delimiter_x_barrier_check = " S ";
 static std::string const delimiter_y_open = "   ";
 static std::string const delimiter_y_closed = "---";
-static std::string const delimiter_y_barrier_check = "~";
+static std::string const delimiter_y_barrier_check = " ~ ";
 constexpr char center_delimiter = '+';
 
 GameField::GameField()
+{
+    for (int x = 0; x < s_width; x++)
+    {
+        for (int y = 0; y < s_height; y++)
+        {
+            m_field[x][y] = std::make_unique<Position>(Coordinate(x, y), m_graph.addVertex());
+            if (y != 0)
+            {
+                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
+                                getPosition(Coordinate(x, y).getBelowCoordinate()).getVertex());
+            }
+            if (x != 0)
+            {
+                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
+                                getPosition(Coordinate(x, y).getLeftCoordinate()).getVertex());
+            }
+        }
+    }
+}
+
+GameField::GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
+    : m_player1(std::move(player1)), m_player2(std::move(player2))
 {
     for (int x = 0; x < s_width; x++)
     {
@@ -76,11 +101,18 @@ std::ostream &operator<<(std::ostream &os, const GameField &gf)
 
 void GameField::printDelimiter(std::string &result, Coordinate const &coordinate) const
 {
+    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
+    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
     if (coordinate.y() != 0)
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getBelowCoordinate()).getVertex()))
         {
-            result.append(delimiter_y_open);
+            // if (player1->hasBarrier(coordinate)) //Interrogate all Players Barriers
+            //    result.append(delimiter_y_open);
+            // else if(player2->hasBarrier(coordinate))
+            //    result.append(delimiter_y_open);
+            
+            result.append(delimiter_y_barrier_check);
         }
         else
         {
@@ -94,12 +126,19 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
     result += center_delimiter;
 }
 
+// TODO(Sascha): die funktion ist zu lang, bitte kürzer machen und Hilfsfunktionen erstellen!
 void GameField::printContent(std::string &result, Coordinate const &coordinate) const
-{
+{ 
+    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
+    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
     if (coordinate.x() != 0)
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getLeftCoordinate()).getVertex()))
         {
+           // if (player1->hasVerticalBarrier(coordinate)) //Interrogate all Players Barriers
+            //    result.append(delimiter_x_barrier_check);
+            // else if(player2->hasVerticalBarrier(coordinate))
+            //    result.append(delimiter_x_barrier_check);
             result.append(delimiter_x_open);
         }
         else
@@ -112,7 +151,26 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
         // append empty space in the beginning that the format does not shift
         result.append((delimiter_x_open.length() - 1) / 2, ' ');
     }
-    result.append(getPosition(coordinate).toString());
+
+    if (m_player1.expired() || m_player2.expired())
+    {
+        throw std::runtime_error("the players can't be deleted before the gameField is deleted.");
+        //? maybe use shared pointers instead of weak pointers? I'm not sure if this would be better.
+    }
+
+
+    if (player1->getCoordinate() == coordinate)
+    {
+        result.append(player1->toString());
+    }
+    else if (player2->getCoordinate() == coordinate)
+    {
+        result.append(player2->toString());
+    }
+    else
+    {
+        result.append(getPosition(coordinate).toString());
+    }
 }
 
 const Position &GameField::getPosition(Coordinate const &coordinate) const

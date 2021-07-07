@@ -4,6 +4,10 @@ zum clonen: `git clone --recurse-submodules git@github.com:Patsch36/Hackathon_Qu
 
 - git submodule update --init --recursive
 
+## Quoridor Game
+
+>The abstract strategy game Quoridor is surprisingly deep for its simple rules. The object of the game is to advance your pawn to the opposite edge of the board. On your turn you may either move your pawn or place a wall. You may hinder your opponent with wall placement, but not completely block them off. Meanwhile, they are trying to do the same to you. The first pawn to reach the opposite side wins.
+
 ## Changes
 Alle wichtigen Änderungen in den bereits gegebenen Dateien können im [Wiki](https://github.com/Patsch36/Hackathon_Quoridor/wiki/Change-History) nachgelesen werden.
 
