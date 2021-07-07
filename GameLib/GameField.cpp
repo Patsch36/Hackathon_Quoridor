@@ -17,7 +17,7 @@ static std::string const delimiter_x_closed = " |  ";
 static std::string const delimiter_x_barrier_check = " S ";
 static std::string const delimiter_y_open = "   ";
 static std::string const delimiter_y_closed = "---";
-static std::string const delimiter_y_barrier_check = "~";
+static std::string const delimiter_y_barrier_check = " ~ ";
 constexpr char center_delimiter = '+';
 
 GameField::GameField()
@@ -101,11 +101,18 @@ std::ostream &operator<<(std::ostream &os, const GameField &gf)
 
 void GameField::printDelimiter(std::string &result, Coordinate const &coordinate) const
 {
+    std::shared_ptr<AbstractPlayer> player1 = m_player1.lock();
+    std::shared_ptr<AbstractPlayer> player2 = m_player2.lock();
     if (coordinate.y() != 0)
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getBelowCoordinate()).getVertex()))
         {
-            result.append(delimiter_y_open);
+            // if (player1->hasBarrier(coordinate)) //Interrogate all Players Barriers
+            //    result.append(delimiter_y_open);
+            // else if(player2->hasBarrier(coordinate))
+            //    result.append(delimiter_y_open);
+            
+            result.append(delimiter_y_barrier_check);
         }
         else
         {
@@ -128,12 +135,10 @@ void GameField::printContent(std::string &result, Coordinate const &coordinate) 
     {
         if (m_graph.hasEdge(getPosition(coordinate).getVertex(), getPosition(coordinate.getLeftCoordinate()).getVertex()))
         {
-            // Maybe PLayer.Postion here implement
-            // if (m_Game.getPlayerCoordinate(coordinate))
-            //   result.append(delimiter_player);         //Or overload methode Position::toString()?
-            // if (player1->hasBarrier(coordinate)) //Interrogate all Players Barriers
+           // if (player1->hasVerticalBarrier(coordinate)) //Interrogate all Players Barriers
             //    result.append(delimiter_x_barrier_check);
-            // else
+            // else if(player2->hasVerticalBarrier(coordinate))
+            //    result.append(delimiter_x_barrier_check);
             result.append(delimiter_x_open);
         }
         else

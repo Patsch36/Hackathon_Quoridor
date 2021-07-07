@@ -17,6 +17,8 @@ public:
 
     Coordinate getCoordinate();
     std::string toString();
+    bool hasVerticalBarrier(Coordinate &coordinate);
+    bool hasHorizontalBarrier(Coordinate &coordinate);
 
 protected:
     bool fieldCheck(const Coordinate &coordinate);

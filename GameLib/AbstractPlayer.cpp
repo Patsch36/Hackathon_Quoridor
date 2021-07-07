@@ -1,4 +1,5 @@
 #include "AbstractPlayer.h"
+#include "AbstractPlayer.h"
 #include <exception>
 
 AbstractPlayer::AbstractPlayer(Coordinate startCoords, const std::vector<ConsoleUtils::Colors> &player_color)
@@ -21,6 +22,20 @@ Coordinate AbstractPlayer::getCoordinate()
 std::string AbstractPlayer::toString()
 {
     return m_playerCharacter;
+}
+
+bool AbstractPlayer::hasVerticalBarrier(Coordinate &coordinate)
+{
+    for (Barrier barrier : m_barriers)
+    {
+
+        //if (coordinate == barrier.getStartCoord())
+        //{
+        //    if (coordinate.x() == barrier.getEndCoord())
+        //        return true;
+        //}
+    }
+    return false;
 }
 
 bool AbstractPlayer::fieldCheck(const Coordinate &coordinate)
