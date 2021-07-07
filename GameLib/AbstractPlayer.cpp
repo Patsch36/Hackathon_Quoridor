@@ -1,5 +1,4 @@
 #include "AbstractPlayer.h"
-#include "AbstractPlayer.h"
 #include <exception>
 
 AbstractPlayer::AbstractPlayer(Coordinate startCoords, const std::vector<ConsoleUtils::Colors> &player_color)
@@ -19,7 +18,7 @@ Coordinate AbstractPlayer::getCoordinate()
     return m_coordinate;
 }
 
-std::string AbstractPlayer::toString()
+std::string AbstractPlayer::toString() const
 {
     return m_playerCharacter;
 }
@@ -29,7 +28,7 @@ bool AbstractPlayer::hasVerticalBarrier(Coordinate &coordinate)
     for (Barrier barrier : m_barriers)
     {
 
-        //if (coordinate == barrier.getStartCoord())
+        // if (coordinate == barrier.getStartCoord())
         //{
         //    if (coordinate.x() == barrier.getEndCoord())
         //        return true;
@@ -38,10 +37,19 @@ bool AbstractPlayer::hasVerticalBarrier(Coordinate &coordinate)
     return false;
 }
 
+//? THis Method with playerTurn in class Game
 bool AbstractPlayer::fieldCheck(const Coordinate &coordinate)
 {
+    //GameFiled field;
+    //field.checkMove(coordinate);
     if (coordinate.x() >= 0 && coordinate.y() >= 0 && coordinate.x() <= 8 && coordinate.y() <= 8)
+    {
+        //? Barrier check and other player check?? or better do the playerTurn in Game class ?
+
+        // if we do it here we have to bring the coordinate off all barriers here. how? maybe only way with an static array
+        // out of object?
         return true;
+    }
     else
         return false;
 }

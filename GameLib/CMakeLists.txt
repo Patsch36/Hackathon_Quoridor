@@ -15,6 +15,6 @@ add_library(GameLib
     HumanPlayer.cpp
     Barrier.h
     Direction.h
-    )
+     )
 
 set_project_warnings(GameLib)

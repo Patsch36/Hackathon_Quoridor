@@ -23,12 +23,12 @@ int main()
     GameField field(player1, player2);
     std::cout << field << std::endl;
 
-    //player1->playerTurn();
+    player1->playerTurn();
 
-    //std::cout << field << std::endl;
+    std::cout << field << std::endl;
 
-    //player1->playerTurn();
-    //std::cout << field << std::endl;
+    player1->playerTurn();
+    std::cout << field << std::endl;
 
     return 0;
 }

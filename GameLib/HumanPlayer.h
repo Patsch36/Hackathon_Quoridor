@@ -10,5 +10,5 @@ public:
     private:
     void printPlayerMenu();
     void printMoveMenu();
-    void printBarrierMenu(int &posStar_x, int &posStar_y, int &posEnd_x, int &posEnd_y);
+    void BarrierMenu(int &posStar_x, int &posStar_y, int &posEnd_x, int &posEnd_y);
 };
