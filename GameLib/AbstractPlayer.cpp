@@ -40,8 +40,7 @@ bool AbstractPlayer::hasVerticalBarrier(Coordinate &coordinate)
 //? THis Method with playerTurn in class Game
 bool AbstractPlayer::fieldCheck(const Coordinate &coordinate)
 {
-    //GameFiled field;
-    //field.checkMove(coordinate);
+
     if (coordinate.x() >= 0 && coordinate.y() >= 0 && coordinate.x() <= 8 && coordinate.y() <= 8)
     {
         //? Barrier check and other player check?? or better do the playerTurn in Game class ?

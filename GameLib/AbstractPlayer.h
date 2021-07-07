@@ -4,6 +4,7 @@
 #include "ConsoleUtils.h"
 #include "Direction.h"
 #include "Position.h"
+#include "GameField.h"
 #include <cstddef>
 #include <vector>
 

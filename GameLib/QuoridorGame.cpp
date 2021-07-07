@@ -46,7 +46,8 @@ void QuoridorGame::round()
         ConsoleUtils::clearConsole();
         std::cout << m_field->toString() << std::endl;
         std::cout << "player1's (" << m_player1->toString() << ") Turn\n";
-        m_player1->playerTurn();
+        m_player1->playerTurn(); //? player turn here implementet because GameRule cant included to AbstractPlayer 
+        //with an do while() and call move or addBarrier from Player and check wit rules method if it acepted or not
     }
     {
         ConsoleUtils::clearConsole();
