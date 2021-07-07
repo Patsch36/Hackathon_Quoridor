@@ -41,26 +41,15 @@ GameField::GameField()
     }
 }
 
-GameField::GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
-    : m_player1(std::move(player1)), m_player2(std::move(player2))
+void GameField::setPlayers(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2)
 {
-    for (int x = 0; x < s_width; x++)
-    {
-        for (int y = 0; y < s_height; y++)
-        {
-            m_field[x][y] = std::make_unique<Position>(Coordinate(x, y), m_graph.addVertex());
-            if (y != 0)
-            {
-                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
-                                getPosition(Coordinate(x, y).getBelowCoordinate()).getVertex());
-            }
-            if (x != 0)
-            {
-                m_graph.addEdge(getPosition(Coordinate(x, y)).getVertex(),
-                                getPosition(Coordinate(x, y).getLeftCoordinate()).getVertex());
-            }
-        }
-    }
+    m_player1 = std::move(player1);
+    m_player2 = std::move(player2);
+}
+
+FieldSize GameField::getSize() const 
+{
+    return {s_width,s_height};
 }
 
 GameField::~GameField() = default;

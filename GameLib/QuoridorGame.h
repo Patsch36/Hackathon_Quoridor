@@ -12,9 +12,11 @@ public:
 
 private:
     GameField m_field;
-    std::array<std::unique_ptr<AbstractPlayer>, 2> m_players;
+    std::shared_ptr<AbstractPlayer> m_player1;
+    std::shared_ptr<AbstractPlayer> m_player2;
+    FieldSize m_fieldSize;
     void round() override;
-    bool gameOver() override;
-    void printResult() override;
+    [[nodiscard]] bool gameOver()const override;
+    void printResult() const override;
     void configGame() override;
 };

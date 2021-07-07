@@ -9,13 +9,20 @@
 #include <memory>
 #include <string>
 
+struct FieldSize
+{
+    const int width;
+    const int height;
+};
+
 class GameField
 {
 public:
     GameField();
-    GameField(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2);
     virtual ~GameField();
     [[nodiscard]] std::string toString() const;
+    void setPlayers(std::weak_ptr<AbstractPlayer> player1, std::weak_ptr<AbstractPlayer> player2);
+    [[nodiscard]] FieldSize getSize() const;
 
     friend std::ostream &operator<<(std::ostream &os, const GameField &gf);
 
