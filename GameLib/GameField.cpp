@@ -100,7 +100,7 @@ void GameField::printDelimiter(std::string &result, Coordinate const &coordinate
             //    result.append(delimiter_y_open);
             // else if(player2->hasBarrier(coordinate))
             //    result.append(delimiter_y_open);
-
+          
             result.append(delimiter_y_open);
         }
         else

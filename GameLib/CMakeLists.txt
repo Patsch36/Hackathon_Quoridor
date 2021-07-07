@@ -19,4 +19,5 @@ add_library(GameLib
     QuoridorGame.cpp
     )
 
+
 set_project_warnings(GameLib)

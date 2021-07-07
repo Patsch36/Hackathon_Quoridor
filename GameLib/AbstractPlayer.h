@@ -16,7 +16,7 @@ public:
     virtual void playerTurn() = 0; // Turn of player (console dialog or automatic for bot player)
 
     Coordinate getCoordinate();
-    std::string toString();
+    std::string toString() const;
     bool hasVerticalBarrier(Coordinate &coordinate);
     bool hasHorizontalBarrier(Coordinate &coordinate);
 

@@ -26,7 +26,7 @@ void HumanPlayer::playerTurn()
         int posStart_y = 0;
         int posEnd_x = 0;
         int posEnd_y = 0;
-        printBarrierMenu(posStart_x, posStart_y, posEnd_x, posEnd_y);
+        BarrierMenu(posStart_x, posStart_y, posEnd_x, posEnd_y);
         Coordinate posStart(posStart_x, posStart_y);
         Coordinate posEnd(posEnd_x, posEnd_y);
         //Barrier barrier(posStart, posEnd);
@@ -51,7 +51,7 @@ void HumanPlayer::printMoveMenu()
               << "3) Right\n";
 }
 
-void HumanPlayer::printBarrierMenu(int &posStart_x, int &posStart_y, int &posEnd_x, int &posEnd_y)
+void HumanPlayer::BarrierMenu(int &posStart_x, int &posStart_y, int &posEnd_x, int &posEnd_y)
 {
     std::cout << "Add barrier in between:\n"
               << "First Coordinate X:";
