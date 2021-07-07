@@ -6,7 +6,13 @@ GameRules::GameRules(std::shared_ptr<GameField> field) : _field(field)
 
 ruleBreakes GameRules::checkGameBorders()
 {
-    return ruleBreakes::OUTOFFIELD;
+    if (std::abs(moveCoordinate.x()) < s_width && std::abs(moveCoordinate.y()) < s_height)
+        return true;
+    return false;
+
+
+
+    //return ruleBreakes::OUTOFFIELD;
 }
 
 ruleBreakes GameRules::checkBarrier()
