@@ -203,3 +203,11 @@ bool GameField::edgeBetweenCoordinatesExists(Coordinate const &a, Coordinate con
 {
     return getEdgeIdBetweenCoordinates(a, b) != Graph::INVALID_EDGE_ID;
 }
+
+
+bool GameField::checkMovement(const Coordinate &moveCoordinate)
+{
+    if (std::abs(moveCoordinate.x()) < s_width && std::abs(moveCoordinate.y()) < s_height)
+        return true;
+    return false;
+}

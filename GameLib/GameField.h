@@ -21,6 +21,9 @@ public:
 
     [[nodiscard]] const Position &getPosition(Coordinate const &coordinates) const;
 
+    // Noch zu testen
+    static bool checkMovement(const Coordinate &moveCoordinate);
+
 private:
     std::weak_ptr<AbstractPlayer> m_player1;
     std::weak_ptr<AbstractPlayer> m_player2;
