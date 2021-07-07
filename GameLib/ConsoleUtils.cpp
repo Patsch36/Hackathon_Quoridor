@@ -95,3 +95,8 @@ std::string ConsoleUtils::colorString(const std::string &str, const std::vector<
     buff += "m";
     return buff + str + "\033[0m";
 }
+
+void ConsoleUtils::clearConsole()
+{
+    std::cout << "\x1B[2J\x1B[H";
+}

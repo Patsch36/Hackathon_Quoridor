@@ -18,6 +18,6 @@ public:
                           const Direction &direction); // checks if a barrier can be created with the point and the direction
 
 private:
-    Coordinate m_start;
-    Coordinate m_end;
+    const Coordinate m_start;
+    const Coordinate m_end;
 };

@@ -15,6 +15,9 @@ add_library(GameLib
     HumanPlayer.cpp
     Barrier.h
     Direction.h
-     )
+    QuoridorGame.h
+    QuoridorGame.cpp
+    )
+
 
 set_project_warnings(GameLib)
