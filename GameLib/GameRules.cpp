@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 #pragma once
-#include "GameRules.h"
 
-=======
 #include "GameRules.h"
 
 GameRules::GameRules(std::shared_ptr<GameField> field) : _field(field)

@@ -1,17 +1,4 @@
 #pragma once
-<<<<<<< HEAD
-#include <memory>
-#include "GameField.h"
-
-
-class GameRules
-{
-public:
-    GameRules(std::weak_ptr<GameField> field);
-
-private:
-    std::weak_ptr<GameField> m_filed;
-=======
 
 #include "GameField.h"
 #include <memory>
@@ -25,7 +12,7 @@ enum class ruleBreakes {
 
 // ====================================================================================================================
 
-class GameRules : GameField
+class GameRules 
 {
 private:
     static ruleBreakes checkGameBorders();
@@ -38,5 +25,5 @@ public:
     ruleBreakes CheckMovement();
     GameRules(std::shared_ptr<GameField> field);
     ~GameRules(){} = default;
->>>>>>> a6ea6b9718041824b469ca41e2e6a03328e45cc8
+
 };
