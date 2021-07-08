@@ -8,6 +8,17 @@ add_library(GameLib
     Position.cpp
     Coordinate.h
     Coordinate.cpp
-)
+    AbstractGame.h
+    AbstractPlayer.h
+    AbstractPlayer.cpp
+    HumanPlayer.h
+    HumanPlayer.cpp
+    Barrier.h
+    Barrier.cpp
+    Direction.h
+    QuoridorGame.h
+    QuoridorGame.cpp
+    )
+
 
 set_project_warnings(GameLib)

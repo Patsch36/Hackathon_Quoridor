@@ -1,13 +1,11 @@
-#include "GameLib/ConsoleUtils.h"
-#include "GameLib/GameField.h"
+#include "GameLib/AbstractGame.h"
+#include "GameLib/QuoridorGame.h"
 #include <iostream>
+#include <memory>
 
 int main()
 {
-    using Colors = ConsoleUtils::Colors;
-    std::cout << ConsoleUtils::colorString("Good luck, have fun!\n",
-                                           {Colors::FG_black, Colors::BG_yellow, Colors::X_underline});
-    GameField field;
-    std::cout << field << std::endl;
+    std::unique_ptr<QuoridorGame> game = std::make_unique<QuoridorGame>();
+    game->run();
     return 0;
 }
